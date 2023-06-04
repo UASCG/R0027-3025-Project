@@ -44,6 +44,8 @@ charRightHand = "."
 charLeftLeg = "/"
 charRightLeg = "\\"
 
+charName = "Pasi V.K. Mattinen"
+
 charJob = "" # Pelaajan hahmon työpaikka, aluksi NULL.
 charResidence = "Myyrmäki" # Pelaajan hahmo asuu tässä sijainnissa.
 charMoney = 100.00 # Raha euroissa ja senteissä.
@@ -92,6 +94,7 @@ if gameHours >= 10: # Tarkistaa onko kellonaika 1 vai 2 merkin pituinen
   gameHoursDoubleDigits = "" # Poistaa ylimääräisen nollan
 else:
   gameHoursDoubleDigits = "0" # Lisää nollan kellonajan alkuun (00:00, ei 0:00)
+gameTimePrint = f"Päivä {gameDays}, {gameHoursDoubleDigits}{gameHours}:00."
 
 charHealthPrint = f"Terveys: {charHealth}" # Tulostettava viesti joka perustuu charHealth-arvoon
 # Luvun väritys
@@ -122,11 +125,82 @@ else:
 
 # Tulostaa infolaatikon, jossa näkyy päivä, aika, ja hahmon tilanne
 print(f""" _________________________________________________________________
-| Päivä {gameDays}, {gameHoursDoubleDigits}{gameHours}:00.                                                 |
-| {charHealthPrint}                                                    |
-| {charEnergyPrint}                                                    |
-| {charHungerPrint}                                                      |
-| Rahat: {charMoney:.2f} €                                                 |
-| Opintopisteet: {charOP} OP                                             |
+| {charName : >25}              {gameTimePrint : ^25}{"|" : <32}
+| {charHealthPrint : >25} {charEnergyPrint : >25}{"|" : >32}
+| {charHungerPrint : >25}|
+||
+| Rahat: {charMoney:.2f} €|
+| Opintopisteet: {charOP} OP|
 |_________________________________________________________________|
 """)
+
+# INFOBOX TEMP TEST 1 /////////////////////////////////////////
+gameHours = 23
+gameDays = 9999
+charName = "Todellapitkäetunimi Tosipitkäsukunimi"
+charMoney = 1000000000.00
+charHealth = 100
+charEnergy = 100
+charHunger = 100
+charOP = 209
+
+if gameHours >= 10: # Tarkistaa onko kellonaika 1 vai 2 merkin pituinen
+  gameHoursDoubleDigits = "" # Poistaa ylimääräisen nollan
+else:
+  gameHoursDoubleDigits = "0" # Lisää nollan kellonajan alkuun (00:00, ei 0:00)
+gameTimePrint = f"Päivä {gameDays}, {gameHoursDoubleDigits}{gameHours}:00."
+
+print(f""" _________________________________________________________________
+| {charName : >25}              {gameTimePrint : ^25}{"|" : <32}
+| {charHealthPrint : >25} {charEnergyPrint : >25}{"|" : >32}
+| {charHungerPrint : >25}|
+||
+| Rahat: {charMoney:.2f} €|
+| Opintopisteet: {charOP} OP|
+|_________________________________________________________________|
+""")
+
+# INFOBOX TEMP TEST 2
+print(f""" _________________________________________________________________
+| {charName : >25}              {gameTimePrint : ^25}{"|" : <32}
+| {charHealthPrint : >25} {charEnergyPrint : >25}{"|" : >32}
+| {charHungerPrint : >25}|
+||
+| Rahat: {charMoney:.2f} €|
+| Opintopisteet: {charOP} OP|
+|_________________________________________________________________|
+""")
+
+gameHours = 0
+gameDays = 0
+charName = "X"
+charMoney = 0.00
+charHealth = 0
+charEnergy = 0
+charHunger = 0
+charOP = 0
+
+if gameHours >= 10: # Tarkistaa onko kellonaika 1 vai 2 merkin pituinen
+  gameHoursDoubleDigits = "" # Poistaa ylimääräisen nollan
+else:
+  gameHoursDoubleDigits = "0" # Lisää nollan kellonajan alkuun (00:00, ei 0:00)
+gameTimePrint = f"Päivä {gameDays}, {gameHoursDoubleDigits}{gameHours}:00."
+
+print(f""" _________________________________________________________________
+| {charName : >25}              {gameTimePrint : ^25}{"|" : <32}
+| {charHealthPrint : >25} {charEnergyPrint : >25}{"|" : >32}
+| {charHungerPrint : >25}|
+||
+| Rahat: {charMoney:.2f} €|
+| Opintopisteet: {charOP} OP|
+|_________________________________________________________________|
+""")
+
+# INFOBOX TEMP TEST END /////////////////////////////////////////
+
+if charHealth <= 0:
+  print(f"Ded amen :(")
+elif charOP >= 210:
+  print(f"Hahmo valmistuu!!!1")
+else:
+  print(f"Valitse toiminto:")
