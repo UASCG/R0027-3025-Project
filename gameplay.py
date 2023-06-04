@@ -94,50 +94,52 @@ if gameHours >= 10: # Tarkistaa onko kellonaika 1 vai 2 merkin pituinen
   gameHoursDoubleDigits = "" # Poistaa ylimääräisen nollan
 else:
   gameHoursDoubleDigits = "0" # Lisää nollan kellonajan alkuun (00:00, ei 0:00)
-gameTimePrint = f"Päivä {gameDays}, {gameHoursDoubleDigits}{gameHours}:00."
+gameTimePrint = f"| Päivä {gameDays : <5}| {gameHoursDoubleDigits}{gameHours}:00 |"
 
-charHealthPrint = f"Terveys: {charHealth}" # Tulostettava viesti joka perustuu charHealth-arvoon
+charHealthPrint = f"{charHealth}" # Tulostettava viesti joka perustuu charHealth-arvoon
 # Luvun väritys
 if charHealth > 75:
-  charHealthPrint = f"Terveys: {color.GREEN}{charHealth}{color.END}"
+  charHealthPrint = f"{color.GREEN}{charHealth}{color.END}"
 elif charHealth > 25:
-  charHealthPrint = f"Terveys: {color.YELLOW}{charHealth}{color.END}"
+  charHealthPrint = f"{color.YELLOW}{charHealth}{color.END}"
 else:
-  charHealthPrint = f"Terveys: {color.RED}{charHealth}{color.END}"
+  charHealthPrint = f"{color.RED}{charHealth}{color.END}"
 
-charEnergyPrint = f"Energia: {charEnergy}" # Tulostettava viesti joka perustuu charEnergy-arvoon
+charEnergyPrint = f"{charEnergy}" # Tulostettava viesti joka perustuu charEnergy-arvoon
 # Luvun väritys
 if charEnergy > 75:
-  charEnergyPrint = f"Energia: {color.GREEN}{charEnergy}{color.END}"
+  charEnergyPrint = f"{color.GREEN}{charEnergy}{color.END}"
 elif charEnergy > 25:
-  charEnergyPrint = f"Energia: {color.YELLOW}{charEnergy}{color.END}"
+  charEnergyPrint = f"{color.YELLOW}{charEnergy}{color.END}"
 else:
-  charEnergyPrint = f"Energia: {color.RED}{charEnergy}{color.END}"
+  charEnergyPrint = f"{color.RED}{charEnergy}{color.END}"
 
-charHungerPrint = f"Nälkä: {charHunger}" # Tulostettava viesti joka perustuu charHunger-arvoon
+charHungerPrint = f"{charHunger}" # Tulostettava viesti joka perustuu charHunger-arvoon
 # Luvun väritys
 if charHunger > 75:
-  charHungerPrint = f"Nälkä: {color.GREEN}{charHunger}{color.END}"
+  charHungerPrint = f"{color.GREEN}{charHunger}{color.END}"
 elif charHunger > 25:
-  charHungerPrint = f"Nälkä: {color.YELLOW}{charHunger}{color.END}"
+  charHungerPrint = f"{color.YELLOW}{charHunger}{color.END}"
 else:
-  charHungerPrint = f"Nälkä: {color.RED}{charHunger}{color.END}"
+  charHungerPrint = f"{color.RED}{charHunger}{color.END}"
 
 # Tulostaa infolaatikon, jossa näkyy päivä, aika, ja hahmon tilanne
+infoSpace1 = (56 - len(charName))
+infoSpace2 = (24 - len(str(charMoney)) - len(str(charOP)))
 print(f""" _________________________________________________________________
-| {charName : >25}              {gameTimePrint : ^25}{"|" : <32}
-| {charHealthPrint : >25} {charEnergyPrint : >25}{"|" : >32}
-| {charHungerPrint : >25}|
-||
-| Rahat: {charMoney:.2f} €|
-| Opintopisteet: {charOP} OP|
+|    {charName}{gameTimePrint : >{infoSpace1}}{"|" : >6}
+|  | Terveys: {charHealthPrint : >12} |     | Energia: {charEnergyPrint : >12} |{"|" : >27}
+|  |   Nälkä: {charHungerPrint : >12} |{"|" : >48}
+|{"|" : >66}
+|  |   Rahat: {charMoney:.2f} € |  | Opintopisteet: {charOP} OP |{"|" : >{infoSpace2}}
+|{"|" : >66}
 |_________________________________________________________________|
 """)
 
 # INFOBOX TEMP TEST 1 /////////////////////////////////////////
 gameHours = 23
 gameDays = 9999
-charName = "Todellapitkäetunimi Tosipitkäsukunimi"
+charName = "Tosipitkänimi123 Tosipitkänimi123"
 charMoney = 1000000000.00
 charHealth = 100
 charEnergy = 100
@@ -148,28 +150,48 @@ if gameHours >= 10: # Tarkistaa onko kellonaika 1 vai 2 merkin pituinen
   gameHoursDoubleDigits = "" # Poistaa ylimääräisen nollan
 else:
   gameHoursDoubleDigits = "0" # Lisää nollan kellonajan alkuun (00:00, ei 0:00)
-gameTimePrint = f"Päivä {gameDays}, {gameHoursDoubleDigits}{gameHours}:00."
+gameTimePrint = f"| Päivä {gameDays : <5}| {gameHoursDoubleDigits}{gameHours}:00 |"
 
+charHealthPrint = f"{charHealth}" # Tulostettava viesti joka perustuu charHealth-arvoon
+# Luvun väritys
+if charHealth > 75:
+  charHealthPrint = f"{color.GREEN}{charHealth}{color.END}"
+elif charHealth > 25:
+  charHealthPrint = f"{color.YELLOW}{charHealth}{color.END}"
+else:
+  charHealthPrint = f"{color.RED}{charHealth}{color.END}"
+
+charEnergyPrint = f"{charEnergy}" # Tulostettava viesti joka perustuu charEnergy-arvoon
+# Luvun väritys
+if charEnergy > 75:
+  charEnergyPrint = f"{color.GREEN}{charEnergy}{color.END}"
+elif charEnergy > 25:
+  charEnergyPrint = f"{color.YELLOW}{charEnergy}{color.END}"
+else:
+  charEnergyPrint = f"{color.RED}{charEnergy}{color.END}"
+
+charHungerPrint = f"{charHunger}" # Tulostettava viesti joka perustuu charHunger-arvoon
+# Luvun väritys
+if charHunger > 75:
+  charHungerPrint = f"{color.GREEN}{charHunger}{color.END}"
+elif charHunger > 25:
+  charHungerPrint = f"{color.YELLOW}{charHunger}{color.END}"
+else:
+  charHungerPrint = f"{color.RED}{charHunger}{color.END}"
+
+infoSpace1 = (56 - len(charName))
+infoSpace2 = (24 - len(str(charMoney)) - len(str(charOP)))
 print(f""" _________________________________________________________________
-| {charName : >25}              {gameTimePrint : ^25}{"|" : <32}
-| {charHealthPrint : >25} {charEnergyPrint : >25}{"|" : >32}
-| {charHungerPrint : >25}|
-||
-| Rahat: {charMoney:.2f} €|
-| Opintopisteet: {charOP} OP|
+|    {charName}{gameTimePrint : >{infoSpace1}}{"|" : >6}
+|  | Terveys: {charHealthPrint : >12} |     | Energia: {charEnergyPrint : >12} |{"|" : >27}
+|  |   Nälkä: {charHungerPrint : >12} |{"|" : >48}
+|{"|" : >66}
+|  |   Rahat: {charMoney:.2f} € |  | Opintopisteet: {charOP} OP |{"|" : >{infoSpace2}}
+|{"|" : >66}
 |_________________________________________________________________|
 """)
 
 # INFOBOX TEMP TEST 2
-print(f""" _________________________________________________________________
-| {charName : >25}              {gameTimePrint : ^25}{"|" : <32}
-| {charHealthPrint : >25} {charEnergyPrint : >25}{"|" : >32}
-| {charHungerPrint : >25}|
-||
-| Rahat: {charMoney:.2f} €|
-| Opintopisteet: {charOP} OP|
-|_________________________________________________________________|
-""")
 
 gameHours = 0
 gameDays = 0
@@ -184,23 +206,54 @@ if gameHours >= 10: # Tarkistaa onko kellonaika 1 vai 2 merkin pituinen
   gameHoursDoubleDigits = "" # Poistaa ylimääräisen nollan
 else:
   gameHoursDoubleDigits = "0" # Lisää nollan kellonajan alkuun (00:00, ei 0:00)
-gameTimePrint = f"Päivä {gameDays}, {gameHoursDoubleDigits}{gameHours}:00."
+gameTimePrint = f"| Päivä {gameDays : <5}| {gameHoursDoubleDigits}{gameHours}:00 |"
 
+charHealthPrint = f"{charHealth}" # Tulostettava viesti joka perustuu charHealth-arvoon
+# Luvun väritys
+if charHealth > 75:
+  charHealthPrint = f"{color.GREEN}{charHealth}{color.END}"
+elif charHealth > 25:
+  charHealthPrint = f"{color.YELLOW}{charHealth}{color.END}"
+else:
+  charHealthPrint = f"{color.RED}{charHealth}{color.END}"
+
+charEnergyPrint = f"{charEnergy}" # Tulostettava viesti joka perustuu charEnergy-arvoon
+# Luvun väritys
+if charEnergy > 75:
+  charEnergyPrint = f"{color.GREEN}{charEnergy}{color.END}"
+elif charEnergy > 25:
+  charEnergyPrint = f"{color.YELLOW}{charEnergy}{color.END}"
+else:
+  charEnergyPrint = f"{color.RED}{charEnergy}{color.END}"
+
+charHungerPrint = f"{charHunger}" # Tulostettava viesti joka perustuu charHunger-arvoon
+# Luvun väritys
+if charHunger > 75:
+  charHungerPrint = f"{color.GREEN}{charHunger}{color.END}"
+elif charHunger > 25:
+  charHungerPrint = f"{color.YELLOW}{charHunger}{color.END}"
+else:
+  charHungerPrint = f"{color.RED}{charHunger}{color.END}"
+
+infoSpace1 = (56 - len(charName))
+infoSpace2 = (24 - len(str(charMoney)) - len(str(charOP)))
 print(f""" _________________________________________________________________
-| {charName : >25}              {gameTimePrint : ^25}{"|" : <32}
-| {charHealthPrint : >25} {charEnergyPrint : >25}{"|" : >32}
-| {charHungerPrint : >25}|
-||
-| Rahat: {charMoney:.2f} €|
-| Opintopisteet: {charOP} OP|
+|    {charName}{gameTimePrint : >{infoSpace1}}{"|" : >6}
+|  | Terveys: {charHealthPrint : >12} |     | Energia: {charEnergyPrint : >12} |{"|" : >27}
+|  |   Nälkä: {charHungerPrint : >12} |{"|" : >48}
+|{"|" : >66}
+|  |   Rahat: {charMoney:.2f} € |  | Opintopisteet: {charOP} OP |{"|" : >{infoSpace2}}
+|{"|" : >66}
 |_________________________________________________________________|
 """)
 
 # INFOBOX TEMP TEST END /////////////////////////////////////////
 
+# TEMP NOT ENABLED
+"""
 if charHealth <= 0:
   print(f"Ded amen :(")
 elif charOP >= 210:
   print(f"Hahmo valmistuu!!!1")
 else:
-  print(f"Valitse toiminto:")
+  print(f"Valitse toiminto:")"""
