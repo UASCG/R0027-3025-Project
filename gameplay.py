@@ -125,13 +125,15 @@ else:
 
 # Tulostaa infolaatikon, jossa näkyy päivä, aika, ja hahmon tilanne
 infoSpace1 = (56 - len(charName))
-infoSpace2 = (24 - len(str(charMoney)) - len(str(charOP)))
+infoSpace2 = (21 - len(str(charMoney)))
+infoSpace3 = (23 - len(str(charMoney)) - infoSpace2)
+infoSpace4 = (5 - len(str(charOP)))
 print(f""" _________________________________________________________________
-|    {charName}{gameTimePrint : >{infoSpace1}}{"|" : >6}
+|    {charName}{gameTimePrint : >{infoSpace1}} | | {"|" : >1}
 |  | Terveys: {charHealthPrint : >12} |     | Energia: {charEnergyPrint : >12} |{"|" : >27}
 |  |   Nälkä: {charHungerPrint : >12} |{"|" : >48}
 |{"|" : >66}
-|  |   Rahat: {charMoney:.2f} € |  | Opintopisteet: {charOP} OP |{"|" : >{infoSpace2}}
+|  |   Rahat: {charMoney:.2f} € {infoSpace2 * " "}| Opintopisteet: {charOP} OP {"|" : >{infoSpace4}}{"|" : >{infoSpace3}}
 |{"|" : >66}
 |_________________________________________________________________|
 """)
@@ -180,13 +182,15 @@ else:
   charHungerPrint = f"{color.RED}{charHunger}{color.END}"
 
 infoSpace1 = (56 - len(charName))
-infoSpace2 = (24 - len(str(charMoney)) - len(str(charOP)))
+infoSpace2 = (21 - len(str(charMoney)))
+infoSpace3 = (23 - len(str(charMoney)) - infoSpace2)
+infoSpace4 = (5 - len(str(charOP)))
 print(f""" _________________________________________________________________
-|    {charName}{gameTimePrint : >{infoSpace1}}{"|" : >6}
+|    {charName}{gameTimePrint : >{infoSpace1}} | | {"|" : >1}
 |  | Terveys: {charHealthPrint : >12} |     | Energia: {charEnergyPrint : >12} |{"|" : >27}
 |  |   Nälkä: {charHungerPrint : >12} |{"|" : >48}
 |{"|" : >66}
-|  |   Rahat: {charMoney:.2f} € |  | Opintopisteet: {charOP} OP |{"|" : >{infoSpace2}}
+|  |   Rahat: {charMoney:.2f} € {infoSpace2 * " "}| Opintopisteet: {charOP} OP {"|" : >{infoSpace4}}{"|" : >{infoSpace3}}
 |{"|" : >66}
 |_________________________________________________________________|
 """)
@@ -236,13 +240,15 @@ else:
   charHungerPrint = f"{color.RED}{charHunger}{color.END}"
 
 infoSpace1 = (56 - len(charName))
-infoSpace2 = (24 - len(str(charMoney)) - len(str(charOP)))
+infoSpace2 = (21 - len(str(charMoney)))
+infoSpace3 = (23 - len(str(charMoney)) - infoSpace2)
+infoSpace4 = (5 - len(str(charOP)))
 print(f""" _________________________________________________________________
-|    {charName}{gameTimePrint : >{infoSpace1}}{"|" : >6}
+|    {charName}{gameTimePrint : >{infoSpace1}} | | {"|" : >1}
 |  | Terveys: {charHealthPrint : >12} |     | Energia: {charEnergyPrint : >12} |{"|" : >27}
 |  |   Nälkä: {charHungerPrint : >12} |{"|" : >48}
 |{"|" : >66}
-|  |   Rahat: {charMoney:.2f} € |  | Opintopisteet: {charOP} OP |{"|" : >{infoSpace2}}
+|  |   Rahat: {charMoney:.2f} € {infoSpace2 * " "}| Opintopisteet: {charOP} OP {"|" : >{infoSpace4}}{"|" : >{infoSpace3}}
 |{"|" : >66}
 |_________________________________________________________________|
 """)
