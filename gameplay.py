@@ -104,7 +104,7 @@ while True:
   |  | Terveys: {charHealthPrint : >12} |     | Energia: {charEnergyPrint : >12} |{"|" : >27}
   |  |   Nälkä: {charHungerPrint : >12} |{"|" : >48}
   |{"|" : >66}
-  |  |   Rahat: {charMoney:.2f} € {infoSpace2 * " "}| Opintopisteet: {charOP} OP {"|" : >{infoSpace3}}{"|" : >2}
+  |  |   Rahat: {color.GREEN}{charMoney:.2f} €{color.END} {infoSpace2 * " "}| Opintopisteet: {color.BLUE}{charOP} OP{color.END} {"|" : >{infoSpace3}}{"|" : >2}
   |_________________________________________________________________|""")
 
   if charHealth <= 0:
@@ -114,13 +114,21 @@ while True:
     print(f"Hahmo valmistuu!!!1")
     break
   else:
-    gameInput = input(f"Valitse toiminto: ")
+    print(f"""  |    Toiminnot:                                                   |
+  |  |{color.DARKCYAN} 1. Syö         {color.END}|   |{color.DARKCYAN} 2. Nuku         {color.END}|   |{color.DARKCYAN} 3. Ympäristö   {color.END}|  |
+  |  |{color.DARKCYAN} 4. Opiskele    {color.END}|   |{color.DARKCYAN} 5. Työskentele  {color.END}|   |{color.DARKCYAN} 6. Talous      {color.END}|  |
+  |  |{color.DARKCYAN} 7.             {color.END}|   |{color.DARKCYAN} 8.              {color.END}|   |{color.RED} 9. Lopeta peli {color.END}|  |
+  |_________________________________________________________________|""")
+    gameInput = input(f"       Valitse toiminto: ")
   
   if gameInput == "1":
+    print("\033c", end="") # Tyhjentää terminaalin näkymän.
     charHealth -= 100
   elif gameInput == "2":
+    print("\033c", end="") # Tyhjentää terminaalin näkymän.
     charOP += 300
   else:
+    print("\033c", end="") # Tyhjentää terminaalin näkymän.
     print("En ymmärtänyt komentoasi.")
 
 
