@@ -18,33 +18,7 @@ gfxSun = f"{color.YELLOW}☼{color.END}" # Väritetty aurinko
 
 print("\033c", end="") # Tyhjentää terminaalin näkymän.
 
-# v Aloitusarvot v
-
-gameHours = 9 # Kellonaika
-gameDays = 0 # Päiviä aloituksen jälkeen
-
-# Hahmon ulkonäkö koostuu näistä muuttujista
-charHat = "n"
-charHead = "o"
-charLeftHand = "."
-charLeftArm = "-"
-charTorso = "I"
-charRightArm = "-"
-charRightHand = "."
-charLeftLeg = "/"
-charRightLeg = "\\"
-
-charName = "John J. Smith" # Hahmon nimi
-
-charJob = "" # Pelaajan hahmon työpaikka, aluksi NULL.
-charResidence = "Myyrmäki" # Pelaajan hahmo asuu tässä sijainnissa.
-charMoney = 100.00 # Raha euroissa ja senteissä.
-charHealth = 100 # Hahmon terveys.
-charEnergy = 100 # Energiamittari, nousee kun hahmo nukkuu, kuluu kun hahmo tekee asioita.
-charHunger = 100 # Nälkämittari, nousee kun hahmo syö, kuluu kun hahmo tekee asioita.
-charOP = 0 # Opintopisteet. Näitä pitää saada jotta voittaa elämässä.
-
-while True:
+def gameRoomAndStats():
   print(f"   _________________________________________________________________") # Tulostaa hahmon ja ympäristön
   print(f"""  |                                                   |             |
   |                                 ____________      |             |
@@ -107,19 +81,66 @@ while True:
   |  |   Rahat: {color.GREEN}{charMoney:.2f} €{color.END} {infoSpace2 * " "}| Opintopisteet: {color.BLUE}{charOP} OP{color.END} {"|" : >{infoSpace3}}{"|" : >2}
   |_________________________________________________________________|""")
 
-  if charHealth <= 0:
-    print(f"Ded amen :(")
-    break
-  elif charOP >= 210:
-    print(f"Hahmo valmistuu!!!1")
-    break
-  else:
-    print(f"""  |    Toiminnot:                                                   |
+def gameInteractMenu():
+  print(f"""  |    Toiminnot:                                                   |
   |  |{color.DARKCYAN} 1. Syö         {color.END}|   |{color.DARKCYAN} 2. Nuku         {color.END}|   |{color.DARKCYAN} 3. Ympäristö   {color.END}|  |
   |  |{color.DARKCYAN} 4. Opiskele    {color.END}|   |{color.DARKCYAN} 5. Työskentele  {color.END}|   |{color.DARKCYAN} 6. Talous      {color.END}|  |
   |  |{color.DARKCYAN} 7.             {color.END}|   |{color.DARKCYAN} 8.              {color.END}|   |{color.RED} 9. Lopeta peli {color.END}|  |
   |_________________________________________________________________|""")
-    gameInput = input(f"       Valitse toiminto: ")
+  gameInput = input(f"       Valitse toiminto: ")
+  return(gameInput)
+
+def gameEnd_Fail_0Health():
+  print(f"""  |    Ded amen :(                                                  |
+  |                                                                 |
+  |                                                                 |
+  |                                                                 |
+  |_________________________________________________________________|""")
+
+def gameEnd_Win_210OP():
+  print(f"""  |    Hahmo valmistuu!!!1                                          |
+  |                                                                 |
+  |                                                                 |
+  |                                                                 |
+  |_________________________________________________________________|""")
+
+# v Aloitusarvot v
+
+gameHours = 9 # Kellonaika
+gameDays = 0 # Päiviä aloituksen jälkeen
+
+# Hahmon ulkonäkö koostuu näistä muuttujista
+charHat = "n"
+charHead = "o"
+charLeftHand = "."
+charLeftArm = "-"
+charTorso = "I"
+charRightArm = "-"
+charRightHand = "."
+charLeftLeg = "/"
+charRightLeg = "\\"
+
+charName = "John J. Smith" # Hahmon nimi
+
+charJob = "" # Pelaajan hahmon työpaikka, aluksi NULL.
+charResidence = "Myyrmäki" # Pelaajan hahmo asuu tässä sijainnissa.
+charMoney = 100.00 # Raha euroissa ja senteissä.
+charHealth = 100 # Hahmon terveys.
+charEnergy = 100 # Energiamittari, nousee kun hahmo nukkuu, kuluu kun hahmo tekee asioita.
+charHunger = 100 # Nälkämittari, nousee kun hahmo syö, kuluu kun hahmo tekee asioita.
+charOP = 0 # Opintopisteet. Näitä pitää saada jotta voittaa elämässä.
+
+while True:
+  gameRoomAndStats()
+
+  if charHealth <= 0:
+    gameEnd_Fail_0Health()
+    break
+  elif charOP >= 210:
+    gameEnd_Win_210OP()
+    break
+  else:
+    gameInput = (gameInteractMenu())
   
   if gameInput == "1":
     print("\033c", end="") # Tyhjentää terminaalin näkymän.
