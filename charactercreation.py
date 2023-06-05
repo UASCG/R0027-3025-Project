@@ -63,19 +63,19 @@ def teksti3():
 
 
 
-teksti1()
-sleep(3)
-clear()
+#teksti1()
+#sleep(3)
+#clear()
 
-teksti2()
-sleep(3)
-clear()
+#teksti2()
+#sleep(3)
+#clear()
 
-teksti3()
-sleep(3)
-clear()
+#teksti3()
+#sleep(3)
+#clear()
 
-print("Tässä olet sinä.")
+#print("Tässä olet sinä.")
 
 print(f""" 
                      o
@@ -85,14 +85,14 @@ print(f"""
 
 sleep(3)
 clear()
-print("Aika surullisen näköinen kaveri.") 
+#print("Aika surullisen näköinen kaveri.") 
 sleep(3)
 clear()
 
-print("Nimi, hattu ja värit voisivat tehdä hänelle hyvää.") 
+#print("Nimi, hattu ja värit voisivat tehdä hänelle hyvää.") 
 sleep(3)
 clear()
-print("Voitko aloittaa hahmon muokkaamisen valitsemalla komennon 1-3: ")
+#print("Voitko aloittaa hahmon muokkaamisen valitsemalla komennon 1-3: ")
 
 
 print(f"""          ___________________________
@@ -108,15 +108,26 @@ print(f"""          ___________________________
          |3.Valitse hahmollesi värit |
          |___________________________| \n""")
 
+
+def valitsehattu():
+  print("Hoi")
+
+def valitsenimi():
+     print("valitsenimi")
+     
+def hahmomenu():
+     print("hahmonenu")
+
 valinta = input()
-if valinta == 1:
+
+if valinta == "2":
      valitsehattu()
 
-elif valinta == 2:
+elif valinta == "1":
      valitsenimi()
 
-elif valinta == 3:
-     valitsevarit()
+#elif valinta == "3":
+     #valitsevarit()
 
 #  n
 #  o
@@ -124,34 +135,17 @@ elif valinta == 3:
 # / \
 
 
-charHat = 0
-charHead = 0
-charLeftHand= 0 
-charLeftArm = 0 
-charTorso= 0
-charRightArm= 0 
-charRightHand= 0
-charLeftLeg = 0 
-charRightLeg = 0
-
-#def valitsenimi():
-     
+charHat = ""
+charHead = "o"
+charLeftHand = "."
+charLeftArm = "-"
+charTorso = "I"
+charRightArm = "-"
+charRightHand = "."
+charLeftLeg = "/"
+charRightLeg = "\\"
 
 
-def valitsehattu():
-
-  print("""
-  1. Hattu A
-  2. Hattu B
-  3. Hattu C
-""")
-
-
-
-
-
-
-#def hahmomenu():
      
      
 
