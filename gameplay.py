@@ -16,9 +16,11 @@ class color:
    REVERSE = '\033[7m'
    END = '\033[0m'
 
-gfxSun = f"{color.YELLOW}☼{color.END}" # Väritetty aurinko
-
 print("\033c", end="") # Tyhjentää terminaalin näkymän.
+
+def tutorialMessage():
+  print(f"       Valitse toiminto kirjoittamalla numero tai yksi kirjain.")
+  print(f"       Esimerkiksi '1' tai 'x' ovat toimivia komentoja.")
 
 def gameRoomAndStats():
   print(f"   _________________________________________________________________") # Tulostaa hahmon ja ympäristön
@@ -83,11 +85,11 @@ def gameRoomAndStats():
   |  |   Rahat: {color.GREEN}{charMoney:.2f} €{color.END} {infoSpace2 * " "}| Opintopisteet: {color.BLUE}{charOP} OP{color.END} {"|" : >{infoSpace3}}{"|" : >2}
   |_________________________________________________________________|""")
 
-def gameInteractMenu(charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100):
+def gameInteractMenu(charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100, tutorialMessageCheck):
   print(f"""  |    Toiminnot:                                                   |
   |  |{color.DARKCYAN} 1. Syö         {color.END}|   |{color.DARKCYAN} 2. Nuku         {color.END}|   |{color.DARKCYAN} 3. Ympäristö   {color.END}|  |
   |  |{color.DARKCYAN} 4. Opiskele    {color.END}|   |{color.DARKCYAN} 5. Työskentele  {color.END}|   |{color.DARKCYAN} 6. Finanssit   {color.END}|  |
-  |  |{color.DARKCYAN} 7.             {color.END}|   |{color.DARKCYAN} 8.              {color.END}|   |{color.RED} 9. Lopeta peli {color.END}|  |
+  |  |{color.DARKCYAN} 7.             {color.END}|   |{color.DARKCYAN} 8.              {color.END}|   |{color.RED} x. Lopeta peli {color.END}|  |
   |_________________________________________________________________|""")
 
   if charHungerMessage_100 == True:
@@ -103,6 +105,8 @@ def gameInteractMenu(charHungerMessage_100, charHungerMessage_0, charEnergyMessa
   if charHealth < 10:
     print(f"       {charName} ei voi hyvin...")
 
+  if tutorialMessageCheck == False:
+    tutorialMessage()
   gameInput = input(f"       Valitse toiminto: ")
   return(gameInput)
 
@@ -111,10 +115,28 @@ def gameInteractMenu_1():
   |    Toiminnot > Syö:                                             |
   |  |{color.DARKCYAN} 1. Tee ruokaa kotona {color.END}                  |                     |
   |  |{color.DARKCYAN} 2. Käy syömässä opiskelijaravintolassa {color.END}|                     |
-  |  |{color.DARKCYAN} 3. Tilaa ruoka kotiinkuljetuksena {color.END}     |    |{color.RED} 9. Takaisin {color.END}|  |
+  |  |{color.DARKCYAN} 3. Tilaa ruoka kotiinkuljetuksena {color.END}     |    |{color.RED} x. Takaisin {color.END}|  |
   |_________________________________________________________________|""")
   gameInput = input(f"       Valitse toiminto: ")
   return(gameInput)
+
+def gameInteractMenu_2():
+  print(f"""   _________________________________________________________________
+  |    Toiminnot > Nuku:                                            |
+  |  |{color.DARKCYAN} Kuinka monta tuntia? {color.END}|                                       |
+  |  |{color.DARKCYAN} (Valitse 1 - 24)     {color.END}|                                       |
+  |                                                |{color.RED} x. Takaisin {color.END}|  |
+  |_________________________________________________________________|""")
+
+  while True:
+    gameInput = input(f"       Valitse toiminto: ")
+    if gameInput == "x" or gameInput == "X":
+      return(gameInput)
+    elif gameInput.isnumeric() == False or int(gameInput) > 24 or int(gameInput) <= 0:
+      print("En ymmärtänyt komentoasi.")
+      continue
+    elif int(gameInput) <= 24 and int(gameInput) > 0:
+      return(gameInput)
 
 def gameEnd_Fail_0Health():
   print(f"""  |    Ded amen :(                                                  |
@@ -156,6 +178,8 @@ charEnergy = 100 # Energiamittari, nousee kun hahmo nukkuu, kuluu kun hahmo teke
 charHunger = 100 # Nälkämittari, nousee kun hahmo syö, kuluu kun hahmo tekee asioita.
 charOP = 0 # Opintopisteet. Näitä pitää saada jotta voittaa elämässä.
 
+tutorialMessageCheck = False
+
 # Pääsilmukka alkaa tästä
 while True:
   charHungerMessage_100 = False # Asetetaan viestit default-asetuksiin, eli ei tulosteta mitään
@@ -185,6 +209,8 @@ while True:
     charHealthMessage_100
 #      print(f"       {charName} tuntee olevansa maailman tervein ihminen!")
 
+  gameHoursCounter = 0 # Palauttaa ajanlaskentamekaniikan oletusarvoille
+
   gameRoomAndStats() # Tulostetaan huone ja hahmon tilanne
 
   if charHealth <= 0: # Tarkistaa onko hahmo kuollut
@@ -194,7 +220,9 @@ while True:
     gameEnd_Win_210OP() # Tulostetaan voittonäkymä
     break # Lopettaa pelin
   else:
-    gameInput = (gameInteractMenu(charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100))
+    gameInput = (gameInteractMenu(charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100, tutorialMessageCheck))
+
+  tutorialMessageCheck = True
 
   if gameInput == "1":
     gameInput = gameInteractMenu_1() # (Toiminnot > Syö) valikko
@@ -210,15 +238,27 @@ while True:
       charHunger += 50
       charMoney -= 17.50
       charEnergy -= 2
-    elif gameInput == "9": # Takaisin edelliseen näkymään
+    elif gameInput == "x" or gameInput == "X": # Takaisin edelliseen näkymään
       print("\033c", end="") # Tyhjentää terminaalin näkymän.    
       continue # Palaa silmukan alkuun
     print("\033c", end="") # Tyhjentää terminaalin näkymän.    
     gameHours += 1
 
   elif gameInput == "2":
-    print("\033c", end="") # Tyhjentää terminaalin näkymän.
-    charOP += 300  
+    gameInput = gameInteractMenu_2() # (Toiminnot > Nuku) valikko
+    if gameInput == "x" or gameInput == "X": # Takaisin edelliseen näkymään
+      print("\033c", end="") # Tyhjentää terminaalin näkymän.    
+      continue # Palaa silmukan alkuun
+    print("\033c", end="") # Tyhjentää terminaalin näkymän.    
+    charEnergy += (int(gameInput) * 10)
+    while gameHoursCounter < int(gameInput):
+      gameHours += 1
+      gameHoursCounter += 1
+      if gameHours == 24: # Tarkistaa onko kello 24
+        gameHours = 0 # Palauttaa kellon arvon takaisin nollaan
+        gameDays += 1 # 24 h = 1 day
+
+
   else:
     print("\033c", end="") # Tyhjentää terminaalin näkymän.
     print("En ymmärtänyt komentoasi.")
