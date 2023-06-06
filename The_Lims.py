@@ -122,7 +122,7 @@ def nayta_info():
     └─────────────────────────────────────────────────────────────────┘
     """)
     input("                 Paina Enter palataksesi päävalikkoon.")
-    print()
+    print("\033c", end="") # Tyhjentää terminaalin näkymän.    
 
 # kunnia keille se kuuluu, credits-sivu
 def nayta_credits():
@@ -147,7 +147,7 @@ def nayta_credits():
     └─────────────────────────────────────────────────────────────────┘    
     """)
     input("                 Paina Enter palataksesi päävalikkoon.")
-    print()
+    print("\033c", end="") # Tyhjentää terminaalin näkymän.    
 
 def clear():
  #määrittää clearfunktion toiminaallisuuden
