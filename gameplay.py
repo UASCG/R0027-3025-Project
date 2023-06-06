@@ -26,18 +26,22 @@ def tutorialMessage():
 def charStatCheck(charHunger, charEnergy, charHealth, charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100):
   if charHunger > 100: # Tarkistaa onko Hunger yli 100
     charHunger = 100 # Palauttaa Hunger-arvon 100:aan mikäli se on yli 100
+    charHealth += 1 # Palauttaa Healthia mikäli Health on alle 100
     charHungerMessage_100 = True # Tulostetaan viesti asiaan liittyen - samaan malliin seuraavissa if-lauseissa
 #      print(f"       {charName} ei jaksa syödä enempää...")
   if charHunger < 0:
     charHunger = 0
+    charHealth -= 1 # Hahmo alkaa kuolla nälkään
     charHungerMessage_0 = True
 #      print(f"       {charName} on nälkäinen...")
   if charEnergy > 100:
     charEnergy = 100
+    charHealth += 1
     charEnergyMessage_100 = True
 #      print(f"       {charName} on nyt todella energinen! Hän ei malta maata enää sängyssä.")
   if charEnergy < 0:
     charEnergy = 0
+    charHealth -= 1 # Hahmo on niin väsynyt että sattuu
     charEnergyMessage_0 = True
 #      print(f"       {charName} alkaa olla melko väsynyt...")
   if charHealth > 100:
