@@ -22,7 +22,7 @@ def tutorialMessage():
   print(f"       Valitse toiminto kirjoittamalla numero tai yksi kirjain.")
   print(f"       Esimerkiksi '1' tai 'x' ovat toimivia komentoja.")
 
-def gameRoomAndStats():
+def gameRoomAndStats(gameHours, gameDays, charHealth, charEnergy, charHunger, charMoney, charOP):
   print(f"   _________________________________________________________________") # Tulostaa hahmon ja ympäristön
   print(f"""  |                                                   |             |
   |                                 ____________      |             |
@@ -85,7 +85,7 @@ def gameRoomAndStats():
   |  |   Rahat: {color.GREEN}{charMoney:.2f} €{color.END} {infoSpace2 * " "}| Opintopisteet: {color.BLUE}{charOP} OP{color.END} {"|" : >{infoSpace3}}{"|" : >2}
   |_________________________________________________________________|""")
 
-def gameInteractMenu(charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100, tutorialMessageCheck):
+def gameInteractMenu(charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100, charHealth, tutorialMessageCheck):
   print(f"""  |    Toiminnot:                                                   |
   |  |{color.DARKCYAN} 1. Syö         {color.END}|   |{color.DARKCYAN} 2. Nuku         {color.END}|   |{color.DARKCYAN} 3. Ympäristö   {color.END}|  |
   |  |{color.DARKCYAN} 4. Opiskele    {color.END}|   |{color.DARKCYAN} 5. Työskentele  {color.END}|   |{color.DARKCYAN} 6. Finanssit   {color.END}|  |
@@ -154,10 +154,6 @@ def gameEnd_Win_210OP():
 
 # v Aloitusarvot v
 
-gameHours = 9 # Kellonaika
-gameDays = 0 # Päiviä aloituksen jälkeen
-
-# Hahmon ulkonäkö koostuu näistä muuttujista
 charHat = "n"
 charHead = "o"
 charLeftHand = "."
@@ -172,97 +168,118 @@ charName = "John J. Smith" # Hahmon nimi
 
 charJob = "" # Pelaajan hahmon työpaikka, aluksi NULL.
 charResidence = "Myyrmäki" # Pelaajan hahmo asuu tässä sijainnissa.
-charMoney = 100.00 # Raha euroissa ja senteissä.
-charHealth = 100 # Hahmon terveys.
-charEnergy = 100 # Energiamittari, nousee kun hahmo nukkuu, kuluu kun hahmo tekee asioita.
-charHunger = 100 # Nälkämittari, nousee kun hahmo syö, kuluu kun hahmo tekee asioita.
-charOP = 0 # Opintopisteet. Näitä pitää saada jotta voittaa elämässä.
 
-tutorialMessageCheck = False
+def mainGameplay(charHat, charHead, charLeftHand, charLeftArm, charTorso, charRightArm, charRightHand, charLeftLeg, charRightLeg, charName):
+  gameHours = 9 # Kellonaika
+  gameDays = 0 # Päiviä aloituksen jälkeen
 
-# Pääsilmukka alkaa tästä
-while True:
-  charHungerMessage_100 = False # Asetetaan viestit default-asetuksiin, eli ei tulosteta mitään
-  charHungerMessage_0 = False
-  charEnergyMessage_100 = False
-  charEnergyMessage_0 = False
-  charHealthMessage_100 = False
-#  charHealthMessage_0 = False
-  if charHunger > 100: # Tarkistaa onko Hunger yli 100
-    charHunger = 100 # Palauttaa Hunger-arvon 100:aan mikäli se on yli 100
-    charHungerMessage_100 = True # Tulostetaan viesti asiaan liittyen - samaan malliin seuraavissa if-lauseissa
-#      print(f"       {charName} ei jaksa syödä enempää...")
-  if charHunger < 0:
-    charHunger = 0
-    charHungerMessage_0
-#      print(f"       {charName} on nälkäinen...")
-  if charEnergy > 100:
-    charEnergy = 100
-    charEnergyMessage_100
-#      print(f"       {charName} on nyt todella energinen! Hän ei malta maata enää sängyssä.")
-  if charEnergy < 0:
-    charEnergy = 0
-    charEnergyMessage_0
-#      print(f"       {charName} alkaa olla melko väsynyt...")
-  if charHealth > 100:
-    charHealth = 100
-    charHealthMessage_100
-#      print(f"       {charName} tuntee olevansa maailman tervein ihminen!")
+  # Hahmon ulkonäkö koostuu näistä muuttujista
+  charHat = "n"
+  charHead = "o"
+  charLeftHand = "."
+  charLeftArm = "-"
+  charTorso = "I"
+  charRightArm = "-"
+  charRightHand = "."
+  charLeftLeg = "/"
+  charRightLeg = "\\"
 
-  gameHoursCounter = 0 # Palauttaa ajanlaskentamekaniikan oletusarvoille
+  charName = "John J. Smith" # Hahmon nimi
 
-  gameRoomAndStats() # Tulostetaan huone ja hahmon tilanne
+  charJob = "" # Pelaajan hahmon työpaikka, aluksi NULL.
+  charResidence = "Myyrmäki" # Pelaajan hahmo asuu tässä sijainnissa.
+  charMoney = 100.00 # Raha euroissa ja senteissä.
+  charHealth = 100 # Hahmon terveys.
+  charEnergy = 100 # Energiamittari, nousee kun hahmo nukkuu, kuluu kun hahmo tekee asioita.
+  charHunger = 100 # Nälkämittari, nousee kun hahmo syö, kuluu kun hahmo tekee asioita.
+  charOP = 0 # Opintopisteet. Näitä pitää saada jotta voittaa elämässä.
 
-  if charHealth <= 0: # Tarkistaa onko hahmo kuollut
-    gameEnd_Fail_0Health() # Tulostetaan game over
-    break # Lopettaa pelin
-  elif charOP >= 210: # Tarkistaa onko hahmo saanut tarvittavan määrän opintopisteitä
-    gameEnd_Win_210OP() # Tulostetaan voittonäkymä
-    break # Lopettaa pelin
-  else:
-    gameInput = (gameInteractMenu(charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100, tutorialMessageCheck))
+  tutorialMessageCheck = False
 
-  tutorialMessageCheck = True
+  # Pääsilmukka alkaa tästä
+  while True:
+    charHungerMessage_100 = False # Asetetaan viestit default-asetuksiin, eli ei tulosteta mitään
+    charHungerMessage_0 = False
+    charEnergyMessage_100 = False
+    charEnergyMessage_0 = False
+    charHealthMessage_100 = False
+  #  charHealthMessage_0 = False
+    if charHunger > 100: # Tarkistaa onko Hunger yli 100
+      charHunger = 100 # Palauttaa Hunger-arvon 100:aan mikäli se on yli 100
+      charHungerMessage_100 = True # Tulostetaan viesti asiaan liittyen - samaan malliin seuraavissa if-lauseissa
+  #      print(f"       {charName} ei jaksa syödä enempää...")
+    if charHunger < 0:
+      charHunger = 0
+      charHungerMessage_0
+  #      print(f"       {charName} on nälkäinen...")
+    if charEnergy > 100:
+      charEnergy = 100
+      charEnergyMessage_100
+  #      print(f"       {charName} on nyt todella energinen! Hän ei malta maata enää sängyssä.")
+    if charEnergy < 0:
+      charEnergy = 0
+      charEnergyMessage_0
+  #      print(f"       {charName} alkaa olla melko väsynyt...")
+    if charHealth > 100:
+      charHealth = 100
+      charHealthMessage_100
+  #      print(f"       {charName} tuntee olevansa maailman tervein ihminen!")
 
-  if gameInput == "1":
-    gameInput = gameInteractMenu_1() # (Toiminnot > Syö) valikko
+    gameHoursCounter = 0 # Palauttaa ajanlaskentamekaniikan oletusarvoille
+
+    gameRoomAndStats(gameHours, gameDays, charHealth, charEnergy, charHunger, charMoney, charOP) # Tulostetaan huone ja hahmon tilanne
+
+    if charHealth <= 0: # Tarkistaa onko hahmo kuollut
+      gameEnd_Fail_0Health() # Tulostetaan game over
+      break # Lopettaa pelin
+    elif charOP >= 210: # Tarkistaa onko hahmo saanut tarvittavan määrän opintopisteitä
+      gameEnd_Win_210OP() # Tulostetaan voittonäkymä
+      break # Lopettaa pelin
+    else:
+      gameInput = (gameInteractMenu(charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100, charHealth, tutorialMessageCheck))
+
+    tutorialMessageCheck = True
+
     if gameInput == "1":
-      charHunger += 50
-      charMoney -= 5
-      charEnergy -= 12
-    elif gameInput == "2":
-      charHunger += 50
-      charMoney -= 2.10
-      charEnergy -= 7
-    elif gameInput == "3":
-      charHunger += 50
-      charMoney -= 17.50
-      charEnergy -= 2
-    elif gameInput == "x" or gameInput == "X": # Takaisin edelliseen näkymään
+      gameInput = gameInteractMenu_1() # (Toiminnot > Syö) valikko
+      if gameInput == "1":
+        charHunger += 50
+        charMoney -= 5
+        charEnergy -= 12
+      elif gameInput == "2":
+        charHunger += 50
+        charMoney -= 2.10
+        charEnergy -= 7
+      elif gameInput == "3":
+        charHunger += 50
+        charMoney -= 17.50
+        charEnergy -= 2
+      elif gameInput == "x" or gameInput == "X": # Takaisin edelliseen näkymään
+        print("\033c", end="") # Tyhjentää terminaalin näkymän.    
+        continue # Palaa silmukan alkuun
       print("\033c", end="") # Tyhjentää terminaalin näkymän.    
-      continue # Palaa silmukan alkuun
-    print("\033c", end="") # Tyhjentää terminaalin näkymän.    
-    gameHours += 1
-
-  elif gameInput == "2":
-    gameInput = gameInteractMenu_2() # (Toiminnot > Nuku) valikko
-    if gameInput == "x" or gameInput == "X": # Takaisin edelliseen näkymään
-      print("\033c", end="") # Tyhjentää terminaalin näkymän.    
-      continue # Palaa silmukan alkuun
-    print("\033c", end="") # Tyhjentää terminaalin näkymän.    
-    charEnergy += (int(gameInput) * 10)
-    while gameHoursCounter < int(gameInput):
       gameHours += 1
-      gameHoursCounter += 1
-      if gameHours == 24: # Tarkistaa onko kello 24
-        gameHours = 0 # Palauttaa kellon arvon takaisin nollaan
-        gameDays += 1 # 24 h = 1 day
 
+    elif gameInput == "2":
+      gameInput = gameInteractMenu_2() # (Toiminnot > Nuku) valikko
+      if gameInput == "x" or gameInput == "X": # Takaisin edelliseen näkymään
+        print("\033c", end="") # Tyhjentää terminaalin näkymän.    
+        continue # Palaa silmukan alkuun
+      print("\033c", end="") # Tyhjentää terminaalin näkymän.    
+      charEnergy += (int(gameInput) * 10)
+      while gameHoursCounter < int(gameInput):
+        gameHours += 1
+        gameHoursCounter += 1
+        if gameHours == 24: # Tarkistaa onko kello 24
+          gameHours = 0 # Palauttaa kellon arvon takaisin nollaan
+          gameDays += 1 # 24 h = 1 day
 
-  else:
-    print("\033c", end="") # Tyhjentää terminaalin näkymän.
-    print("En ymmärtänyt komentoasi.")
+    else:
+      print("\033c", end="") # Tyhjentää terminaalin näkymän.
+      print("En ymmärtänyt komentoasi.")
 
-  if gameHours == 24: # Tarkistaa onko kello 24
-    gameHours = 0 # Palauttaa kellon arvon takaisin nollaan
-    gameDays += 1 # 24 h = 1 day
+    if gameHours == 24: # Tarkistaa onko kello 24
+      gameHours = 0 # Palauttaa kellon arvon takaisin nollaan
+      gameDays += 1 # 24 h = 1 day
+
+mainGameplay(charHat, charHead, charLeftHand, charLeftArm, charTorso, charRightArm, charRightHand, charLeftLeg, charRightLeg, charName)
