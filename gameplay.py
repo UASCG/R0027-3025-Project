@@ -61,7 +61,7 @@ def charStatCheck_Message(charHungerMessage_100, charHungerMessage_0, charEnergy
     print(f"       {charName} ei voi hyvin...")
   return()
 
-def gameRoomAndStats(gameHours, gameDays, charHealth, charEnergy, charHunger, charMoney, charOP):
+def gameRoomAndStats(gameHours, gameDays, charHealth, charEnergy, charHunger, charMoney, charOP, charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100):
   print(f"   _________________________________________________________________") # Tulostaa hahmon ja ympäristön
   print(f"""  |                                                   |             |
   |                                 ____________      |             |
@@ -134,18 +134,18 @@ def gameInteractMenu(charHungerMessage_100, charHungerMessage_0, charEnergyMessa
 
   charStatCheck_Message(charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100, charHealth)
 
-  if charHungerMessage_100 == True:
-    print(f"       {charName} ei jaksa syödä enempää...")
-  if charHungerMessage_0 == True:
-    print(f"       {charName} on nälkäinen...")
-  if charEnergyMessage_100 == True:
-    print(f"       {charName} on nyt todella energinen! Hän ei malta maata enää sängyssä.")
-  if charEnergyMessage_0 == True:
-    print(f"       {charName} alkaa olla melko väsynyt...")
-  if charHealthMessage_100 == True:
-    print(f"       {charName} tuntee olevansa maailman tervein ihminen!")
-  if charHealth < 10:
-    print(f"       {charName} ei voi hyvin...")
+#  if charHungerMessage_100 == True:
+#    print(f"       {charName} ei jaksa syödä enempää...")
+#  if charHungerMessage_0 == True:
+#    print(f"       {charName} on nälkäinen...")
+#  if charEnergyMessage_100 == True:
+#    print(f"       {charName} on nyt todella energinen! Hän ei malta maata enää sängyssä.")
+#  if charEnergyMessage_0 == True:
+#    print(f"       {charName} alkaa olla melko väsynyt...")
+#  if charHealthMessage_100 == True:
+#    print(f"       {charName} tuntee olevansa maailman tervein ihminen!")
+#  if charHealth < 10:
+#    print(f"       {charName} ei voi hyvin...")
 
   if tutorialMessageCheck == False:
     tutorialMessage()
@@ -159,6 +159,8 @@ def gamePseudoMenu(charHungerMessage_100, charHungerMessage_0, charEnergyMessage
   |  |{color.DARKCYAN}                {color.END}|   |{color.DARKCYAN}                 {color.END}|   |{color.RED} x. Lopeta peli {color.END}|  |
   |_________________________________________________________________|""")
 
+#  charStatCheck_Message(charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100, charHealth)
+
   if charHungerMessage_100 == True:
     print(f"       {charName} ei jaksa syödä enempää...")
   if charHungerMessage_0 == True:
@@ -172,9 +174,8 @@ def gamePseudoMenu(charHungerMessage_100, charHungerMessage_0, charEnergyMessage
   if charHealth < 10:
     print(f"       {charName} ei voi hyvin...")
 
-  return()
 
-def gameInteractMenu_1():
+def gameInteractMenu_1(charHunger, charEnergy, charHealth, charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100):
   print(f"""   _________________________________________________________________
   |    Toiminnot > Syö:                                             |
   |  |{color.DARKCYAN} 1. Tee ruokaa kotona {color.END}                  |                     |
@@ -422,7 +423,7 @@ def mainGameplay(charHat, charHead, charLeftHand, charLeftArm, charTorso, charRi
 
     gameHoursCounter = 0 # Palauttaa ajanlaskentamekaniikan oletusarvoille
 
-    gameRoomAndStats(gameHours, gameDays, charHealth, charEnergy, charHunger, charMoney, charOP) # Tulostetaan huone ja hahmon tilanne
+    gameRoomAndStats(gameHours, gameDays, charHealth, charEnergy, charHunger, charMoney, charOP, charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100) # Tulostetaan huone ja hahmon tilanne
 
     if charHealth <= 0: # Tarkistaa onko hahmo kuollut
       gameEnd_Fail_0Health() # Tulostetaan game over
@@ -436,7 +437,7 @@ def mainGameplay(charHat, charHead, charLeftHand, charLeftArm, charTorso, charRi
     tutorialMessageCheck = True
 
     if gameInput == "1":
-      gameInput = gameInteractMenu_1() # (Toiminnot > Syö) valikko
+      gameInput = gameInteractMenu_1(charHunger, charEnergy, charHealth, charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100) # (Toiminnot > Syö) valikko
       if gameInput == "1":
         charHunger += 50
         charMoney -= 5
@@ -452,6 +453,9 @@ def mainGameplay(charHat, charHead, charLeftHand, charLeftArm, charTorso, charRi
       elif gameInput.upper() == "X": # Takaisin edelliseen näkymään
         print("\033c", end="") # Tyhjentää terminaalin näkymän.    
         continue # Palaa silmukan alkuun
+      charHunger, charEnergy, charHealth, charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100 = charStatCheck(charHunger, charEnergy, charHealth, charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100)
+      charStatCheck_Message(charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100, charHealth)
+      time.sleep(1)
       print("\033c", end="") # Tyhjentää terminaalin näkymän.    
       gameHours += 1
 
@@ -472,7 +476,7 @@ def mainGameplay(charHat, charHead, charLeftHand, charLeftArm, charTorso, charRi
         if gameHours == 24: # Tarkistaa onko kello 24
           gameHours = 0 # Palauttaa kellon arvon takaisin nollaan
           gameDays += 1 # 24 h = 1 day
-        gameRoomAndStats(gameHours, gameDays, charHealth, charEnergy, charHunger, charMoney, charOP)
+        gameRoomAndStats(gameHours, gameDays, charHealth, charEnergy, charHunger, charMoney, charOP, charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100)
         gamePseudoMenu(charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100, charHealth)
         print("\033c", end="") # Tyhjentää terminaalin näkymän.
         time.sleep(0.3)
