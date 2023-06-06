@@ -67,10 +67,28 @@ def charStatCheck_Message(charHungerMessage_100, charHungerMessage_0, charEnergy
 
 def gameRoomAndStats(gameHours, gameDays, charHealth, charEnergy, charHunger, charMoney, charOP, charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100):
   print(f"   _________________________________________________________________") # Tulostaa hahmon ja ympäristön
-  print(f"""  |                                                   |             |
+  if gameHours >= 9 and gameHours <= 21:
+    print(f"""  |                                                   |             |
   |                                 ____________      |             |
   |                                ||    ||  `O||     |             |
   |                                ||    ||  ´ ||     |             |
+  |                                ||____||____||     |             |
+  |                                                ___()            |
+  |                                ()_____________(\__\\\()          |
+  |                                ||\() \_\ \_\ \_(___)||          |
+  |________________________________||\|| |_| |_| |_|____||          |
+  |                                   || |_| |_| |_|    ||          |
+  |                                                       `.        |
+  |          {charHat}                                              `.      |
+  |          {charHead}                                                `.    |
+  |        {charLeftHand}{charLeftArm}{charTorso}{charRightArm}{charRightHand}                                                `.  |
+  |         {charLeftLeg} {charRightLeg}                                                   `.|
+  |_________________________________________________________________|""")
+  else:
+        print(f"""  |                                                   |             |
+  |                                 ____________      |             |
+  |                                ||    ||   ☽||     |             |
+  |                                ||    ||    ||     |             |
   |                                ||____||____||     |             |
   |                                                ___()            |
   |                                ()_____________(\__\\\()          |
