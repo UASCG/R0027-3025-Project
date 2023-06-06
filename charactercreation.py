@@ -9,7 +9,7 @@ def clear():
 
 	else:
 		_ = system('clear')
-                            
+clear()                           
 
 class color:
    PURPLE = '\033[95m'
@@ -26,7 +26,17 @@ class color:
    REVERSE = '\033[7m'
    END = '\033[0m'
 
-clear()
+charName= ""
+charHat = ""
+charHead = "o"
+charLeftHand = "."
+charLeftArm = "-"
+charTorso = "I"
+charRightArm = "-"
+charRightHand = "."
+charLeftLeg = "/"
+charRightLeg = "\\"
+
 
 def teksti1():
 
@@ -59,68 +69,6 @@ def teksti3():
   print(".           tulevien haasteiden.            .")
   print(f" _________________       ___________________")
   print(f"(_                 ` . ´                    _)")
-
-
-
-teksti1()
-sleep(3)
-clear()
-
-teksti2()
-sleep(3)
-clear()
-
-teksti3()
-sleep(3)
-clear()
-
-print("Tässä olet sinä.")
-
-print(f""" 
-                     o
-                   .-I-.
-                    / \ \n""") 
-
-
-sleep(3)
-clear()
-print("Aika surullisen näköinen kaveri.") 
-sleep(3)
-clear()
-
-print("Nimi, hattu ja värit voisivat tehdä hänelle hyvää.") 
-sleep(3)
-clear()
-
-print(f""" 
-                     o
-                   .-I-.
-                    / \ \n""") 
-
-print("Voitko aloittaa hahmon muokkaamisen valitsemalla komennon 1-3: ")
-
-print(f"""          ___________________________
-         |                           |
-         | 1.Valitse hahmollesi nimi |
-         |___________________________|""")
-print(f"""          ___________________________
-         |                           |
-         |2.Valitse hahmollesi hattu |
-         |___________________________| """)
-print(f"""          ___________________________
-         |                           |
-         |3.Valitse hahmollesi värit |
-         |___________________________| \n""")
-
-charHat = ""
-charHead = "o"
-charLeftHand = "."
-charLeftArm = "-"
-charTorso = "I"
-charRightArm = "-"
-charRightHand = "."
-charLeftLeg = "/"
-charRightLeg = "\\"
 
 def valitsehattu():
     global charHat
@@ -200,30 +148,167 @@ def valitsehattu():
             print("Syötä numero väliltä 1-16!")
             input("Paina Enter jatkaaksesi...")     
 
-def valitsenimi():
-    print("valitsenimi")
-     
-def hahmomenu():
-    print("hahmonenu")
-
-valinta = input("Syötä valinta: ")
-
-if valinta == "2":
-    charHat = valitsehattu()
-
-elif valinta == "1":
-    valitsenimi()
-
-#elif valinta == "3":
-     #valitsevarit()
-
-print(f"""
+def readycheck():
+  while True:
+    if charName != "":
+      print(f"""
        {charHat}                                                    
        {charHead}                                                    
      {charLeftHand}{charLeftArm}{charTorso}{charRightArm}{charRightHand}                                                
       {charLeftLeg} {charRightLeg} 
+
+    Nimesi: {charName}\n""")
       
-      Olet valmis! """)
+      readycheck1 = input("Oletko tyytyväinen muokkaukseen? Y/N ? ")
+      if readycheck1.upper() == "Y":
+        clear()
+        print(f"""                  _                   .                     _
+                 (__________________´   `____________________)
+                 .                                           .
+                 .           Customisointi valmis!           . 
+                 .                                           .
+                  _________________       ___________________
+                 (_                 ` . ´                    _)
+              """)
+        sleep(3)
+        clear()
+        print(f"""                  _                   .                     _
+                 (__________________´   `____________________)
+                 .                                           .
+                 .               Olet valmis                 . 
+                 .            aloittamaan matkasi!           .
+                  _________________       ___________________
+                 (_                 ` . ´                    _)
+              """)
+        sleep(3)
+        clear()
+        break
+      elif readycheck1.upper() == "N":
+          hahmomenu()
+      else:
+          "Valitse joko Y/N "
+          input("Paina Enter jatkaaksesi...")
+    else:
+      print("Valitse ensin itsellesi nimi jatkaaksesi")
+      input("Paina Enter jatkaaksesi...")
+      hahmomenu()
+  
+
+
+def hahmomenu():
+  while True:
+    print(f"""
+                
+                    {charHat}                                                    
+                    {charHead}                                                    
+                  {charLeftHand}{charLeftArm}{charTorso}{charRightArm}{charRightHand}                                                
+                   {charLeftLeg} {charRightLeg} 
+
+                Nimesi: {charName}\n""")
+
+    print("Voitko aloittaa hahmon muokkaamisen valitsemalla komennon 1-3: ")
+
+    print(f"""          ___________________________
+         |                           |
+         | 1.Valitse hahmollesi nimi |
+         |___________________________|""")
+    print(f"""          ___________________________
+         |                           |
+         |2.Valitse hahmollesi hattu |
+         |___________________________| """)
+    print(f"""          ___________________________
+         |                           |
+         |3.Valitse hahmollesi värit |
+         |___________________________| """)
+    print(f"""          ___________________________
+         |                           |
+         |        4.Valmis           |
+         |___________________________| \n""")
+  
+    valinta = input("Syötä valinta: ")
+
+    if valinta == "2":
+      valitsehattu()
+
+    elif valinta == "1":
+      valitsenimi()
+    elif valinta == "3":
+      print("\033[93mUPCOMING DLC!!!!!!1 :OO \033[0m")
+      input("Paina Enter")
+      #tähän ei riittänyt aika
+    elif valinta == "4":
+        readycheck()
+        break
+    else:
+      print("Virheellinen valinta. Valitse toiminto 1-4.")
+      input("Paina Enter jatkaaksesi...")
+
+     
+
+
+def valitsenimi():
+    clear()
+    global charName
+    while True:
+        nimi = input("Syötä merkkijono (1-33 merkkiä): ")
+        if 1 <= len(nimi) <= 33:  # Tarkistetaan merkkijonon pituus
+            charName = nimi
+            print(f"Syötit merkkijonon: {charName}")
+            while True:
+                vahvistus = input("Oletko varma? (Y/N): ")
+                if vahvistus.upper() == "Y":
+                    return  # Palautetaan ohjelman suoritus takaisin pääohjelmaan
+                elif vahvistus.upper() == "N":
+                    break  # Palataan takaisin kysymään uutta syötettä
+                else:
+                    print("Syötä 'Y' tai 'N'!")
+                    input("Paina Enter jatkaaksesi...")
+        else:
+            print("Syötä merkkijono, jonka pituus on 1-33 merkkiä!")
+            input("Paina Enter jatkaaksesi...")
+
+def customisointivalmis():
+    print("Olet valmis aloittamaan matkasi!")
+
+teksti1()
+sleep(3)
+clear()
+
+teksti2()
+sleep(3)
+clear()
+
+teksti3()
+sleep(3)
+clear()
+
+print("Tässä olet sinä.")
+
+print(f""" 
+                     o
+                   .-I-.
+                    / \ \n""") 
+
+
+
+sleep(3)
+clear()
+print("Aika surullisen näköinen kaveri.") 
+sleep(3)
+clear()
+
+print("Nimi, hattu ja värit voisivat tehdä hänelle hyvää.") 
+sleep(3)
+clear()
+
+hahmomenu()
+
+print("Oma osuus päättyy! Jeee hyvä sinä!\n")
+      
+      
+
+
+
 
    
 
