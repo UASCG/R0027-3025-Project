@@ -1,3 +1,8 @@
+"""
+Muista!
+ 1. Poista DEBUG osiot
+"""
+
 # Koodi yhdistetään tähän tiedostoon.
 
 # logo ja välkkyvä epilepsia-intro
