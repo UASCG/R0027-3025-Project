@@ -490,8 +490,15 @@ def mainGameplay(charHat, charHead, charLeftHand, charLeftArm, charTorso, charRi
     elif gameInput == "4":
       gameInput = gameInteractMenu_4() # (Toiminnot > Opiskele) valikko
       if gameInput.upper() == "X": # Takaisin edelliseen näkymään
-        print("\033c", end="") # Tyhjentää terminaalin näkymän.    
+        print("\033c", end="") # Tyhjentää terminaalin näkymän.
         continue # Palaa silmukan alkuun
+      if gameInput == "1":
+        gameInput_Chosen = gameInput
+        gameInput_Chosen = gameInput_Chosen_Messages(gameInput_Chosen)
+        gameInput = gameInteractMenu_SelectTime(gameInput_Chosen) # (Toiminnot > Opiskele > Ajastin) valikko
+        charHunger -= 5
+        charOP += 1
+        charEnergy -= 12
 
     elif gameInput == "5":
       gameInput = gameInteractMenu_5() # (Toiminnot > Työskentele) valikko
