@@ -488,14 +488,14 @@ def mainGameplay(charHat, charHead, charLeftHand, charLeftArm, charTorso, charRi
         continue # Palaa silmukan alkuun
 
     elif gameInput == "4":
+      gameInput_Chosen = gameInput
+      gameInput_Chosen = gameInput_Chosen_Messages(gameInput_Chosen)
       gameInput = gameInteractMenu_4() # (Toiminnot > Opiskele) valikko
       if gameInput.upper() == "X": # Takaisin edelliseen näkymään
         print("\033c", end="") # Tyhjentää terminaalin näkymän.
         continue # Palaa silmukan alkuun
 
       if gameInput == "1": # Mene oppitunnille
-        gameInput_Chosen = gameInput
-        gameInput_Chosen = gameInput_Chosen_Messages(gameInput_Chosen)
         gameInput = gameInteractMenu_SelectTime(gameInput_Chosen) # (Toiminnot > Opiskele > Ajastin) valikko
         if gameInput.upper() == "X": # Takaisin edelliseen näkymään
           print("\033c", end="") # Tyhjentää terminaalin näkymän.    
@@ -517,8 +517,6 @@ def mainGameplay(charHat, charHead, charLeftHand, charLeftArm, charTorso, charRi
           time.sleep(0.3)
 
       if gameInput == "2": # Osallistu etätunnille
-        gameInput_Chosen = gameInput
-        gameInput_Chosen = gameInput_Chosen_Messages(gameInput_Chosen)
         gameInput = gameInteractMenu_SelectTime(gameInput_Chosen) # (Toiminnot > Opiskele > Ajastin) valikko
         if gameInput.upper() == "X": # Takaisin edelliseen näkymään
           print("\033c", end="") # Tyhjentää terminaalin näkymän.    
@@ -540,8 +538,6 @@ def mainGameplay(charHat, charHead, charLeftHand, charLeftArm, charTorso, charRi
           time.sleep(0.3)
 
       if gameInput == "3": # Opiskele itsenäisesti
-        gameInput_Chosen = gameInput
-        gameInput_Chosen = gameInput_Chosen_Messages(gameInput_Chosen)
         gameInput = gameInteractMenu_SelectTime(gameInput_Chosen) # (Toiminnot > Opiskele > Ajastin) valikko
         if gameInput.upper() == "X": # Takaisin edelliseen näkymään
           print("\033c", end="") # Tyhjentää terminaalin näkymän.    
