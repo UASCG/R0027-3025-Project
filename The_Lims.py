@@ -809,17 +809,17 @@ def gameEnd_Win_210OP():
 
 # v Aloitusarvot v
 
-charHat = "n"
-charHead = "o"
-charLeftHand = "."
-charLeftArm = "-"
-charTorso = "I"
-charRightArm = "-"
-charRightHand = "."
-charLeftLeg = "/"
-charRightLeg = "\\"
+# charHat = "n"
+# charHead = "o"
+# charLeftHand = "."
+# charLeftArm = "-"
+# charTorso = "I"
+# charRightArm = "-"
+# charRightHand = "."
+# charLeftLeg = "/"
+# charRightLeg = "\\"
 
-charName = "John J. Smith" # Hahmon nimi
+# charName = "John J. Smith" # Hahmon nimi
 
 charJob = "" # Pelaajan hahmon työpaikka, aluksi NULL.
 charResidence = "Myyrmäki" # Pelaajan hahmo asuu tässä sijainnissa.
@@ -830,17 +830,17 @@ def mainGameplay(charHat, charHead, charLeftHand, charLeftArm, charTorso, charRi
   gameDays = 0 # Päiviä aloituksen jälkeen
 
   # Hahmon ulkonäkö koostuu näistä muuttujista
-  charHat = "n"
-  charHead = "o"
-  charLeftHand = "."
-  charLeftArm = "-"
-  charTorso = "I"
-  charRightArm = "-"
-  charRightHand = "."
-  charLeftLeg = "/"
-  charRightLeg = "\\"
+#  charHat = "n"
+#  charHead = "o"
+#  charLeftHand = "."
+#  charLeftArm = "-"
+#  charTorso = "I"
+#  charRightArm = "-"
+#  charRightHand = "."
+#  charLeftLeg = "/"
+#  charRightLeg = "\\"
 
-  charName = "John J. Smith" # Hahmon nimi
+#  charName = "John J. Smith" # Hahmon nimi
 
   charJob = "" # Pelaajan hahmon työpaikka, aluksi NULL.
   charResidence = "Myyrmäki" # Pelaajan hahmo asuu tässä sijainnissa.
@@ -1028,8 +1028,6 @@ def mainGameplay(charHat, charHead, charLeftHand, charLeftArm, charTorso, charRi
       gameHours = 0 # Palauttaa kellon arvon takaisin nollaan
       gameDays += 1 # 24 h = 1 day
 
-mainGameplay(charHat, charHead, charLeftHand, charLeftArm, charTorso, charRightArm, charRightHand, charLeftLeg, charRightLeg, charName, charResidence, charResidence_Rent)
-
 # gameplay.py loppuu tähän
 
 # päävalikon toiminnot, looppi
@@ -1041,7 +1039,7 @@ while True:
     if valinta == "1":
         print("\033c", end="")
         mainCharacterCreator()
-        mainGameplay(charHat, charHead, charLeftHand, charLeftArm, charTorso, charRightArm, charRightHand, charLeftLeg, charRightLeg, charName)
+        mainGameplay(charHat, charHead, charLeftHand, charLeftArm, charTorso, charRightArm, charRightHand, charLeftLeg, charRightLeg, charName, charResidence, charResidence_Rent)
         # PELI
     elif valinta == "2":
         print("\033c", end="")
