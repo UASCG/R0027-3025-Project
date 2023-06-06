@@ -552,8 +552,19 @@ def gameInteractMenu_1():
   |  |{color.DARKCYAN} 2. Käy syömässä opiskelijaravintolassa {color.END}|                     |
   |  |{color.DARKCYAN} 3. Tilaa ruoka kotiinkuljetuksena {color.END}     |    |{color.RED} x. Takaisin {color.END}|  |
   |_________________________________________________________________|""")
-  gameInput = input(f"       Valitse toiminto: ")
-  return(gameInput)
+
+  while True:
+    gameInput = input(f"       Valitse toiminto: ")
+    if gameInput.upper() == "X":
+      return(gameInput)
+    elif gameInput.isnumeric() == False:
+        print("En ymmärtänyt komentoasi.")
+        continue
+    elif int(gameInput) > 0 and int(gameInput) <= 3:
+      return(gameInput)
+    else:
+        print("En ymmärtänyt komentoasi.")
+        continue
 
 def gameInteractMenu_2():
   print(f"""   _________________________________________________________________
@@ -565,13 +576,112 @@ def gameInteractMenu_2():
 
   while True:
     gameInput = input(f"       Valitse toiminto: ")
-    if gameInput == "x" or gameInput == "X":
+    if gameInput.upper() == "X":
       return(gameInput)
-    elif gameInput.isnumeric() == False or int(gameInput) > 24 or int(gameInput) <= 0:
+    elif gameInput.isnumeric() == False:
       print("En ymmärtänyt komentoasi.")
       continue
     elif int(gameInput) <= 24 and int(gameInput) > 0:
       return(gameInput)
+    else:
+        print("En ymmärtänyt komentoasi.")
+        continue
+    
+def gameInteractMenu_3():
+  print(f"""   _________________________________________________________________
+  |    Toiminnot > Ympäristö:                                             |
+  |  |{color.DARKCYAN} 1. {color.END}                  |                     |
+  |  |{color.DARKCYAN} 2. {color.END}|                     |
+  |  |{color.DARKCYAN} 3. {color.END}     |    |{color.RED} x. Takaisin {color.END}|  |
+  |_________________________________________________________________|""")
+
+  while True:
+    gameInput = input(f"       Valitse toiminto: ")
+    if gameInput.upper() == "X":
+      return(gameInput)
+    elif gameInput.isnumeric() == False:
+      print("En ymmärtänyt komentoasi.")
+      continue
+    elif int(gameInput) <= 24 and int(gameInput) > 0:
+      return(gameInput)
+    else:
+        print("En ymmärtänyt komentoasi.")
+        continue
+
+def gameInteractMenu_4():
+  print(f"""   _________________________________________________________________
+  |    Toiminnot > Opiskele:                                             |
+  |  |{color.DARKCYAN} 1. {color.END}                  |                     |
+  |  |{color.DARKCYAN} 2. {color.END}|                     |
+  |  |{color.DARKCYAN} 3. {color.END}     |    |{color.RED} x. Takaisin {color.END}|  |
+  |_________________________________________________________________|""")
+
+  while True:
+    gameInput = input(f"       Valitse toiminto: ")
+    if gameInput.upper() == "X":
+      return(gameInput)
+    elif gameInput.isnumeric() == False:
+      print("En ymmärtänyt komentoasi.")
+      continue
+    elif int(gameInput) <= 24 and int(gameInput) > 0:
+      return(gameInput)
+    else:
+        print("En ymmärtänyt komentoasi.")
+        continue
+
+def gameInteractMenu_5():
+  print(f"""   _________________________________________________________________
+  |    Toiminnot > Työskentele:                                             |
+  |  |{color.DARKCYAN} 1. {color.END}                  |                     |
+  |  |{color.DARKCYAN} 2. {color.END}|                     |
+  |  |{color.DARKCYAN} 3. {color.END}     |    |{color.RED} x. Takaisin {color.END}|  |
+  |_________________________________________________________________|""")
+
+  while True:
+    gameInput = input(f"       Valitse toiminto: ")
+    if gameInput.upper() == "X":
+      return(gameInput)
+    elif gameInput.isnumeric() == False:
+      print("En ymmärtänyt komentoasi.")
+      continue
+    elif int(gameInput) <= 24 and int(gameInput) > 0:
+      return(gameInput)
+    else:
+        print("En ymmärtänyt komentoasi.")
+        continue
+
+def gameInteractMenu_6():
+  print(f"""   _________________________________________________________________
+  |    Toiminnot > Finanssit:                                             |
+  |  |{color.DARKCYAN} 1. {color.END}                  |                     |
+  |  |{color.DARKCYAN} 2. {color.END}|                     |
+  |  |{color.DARKCYAN} 3. {color.END}     |    |{color.RED} x. Takaisin {color.END}|  |
+  |_________________________________________________________________|""")
+
+  while True:
+    gameInput = input(f"       Valitse toiminto: ")
+    if gameInput.upper() == "X":
+      return(gameInput)
+    elif gameInput.isnumeric() == False:
+      print("En ymmärtänyt komentoasi.")
+      continue
+    elif int(gameInput) <= 24 and int(gameInput) > 0:
+      return(gameInput)
+    else:
+        print("En ymmärtänyt komentoasi.")
+        continue
+
+def gameInteractMenu_X():
+  print(f"""   _________________________________________________________________
+  |    Toiminnot > Lopeta peli:                                     |
+  |    Haluatko varmasti lopettaa pelin? Pelissä ei (vielä) ole     |
+  |    tallennusmekaniikkaa, joten menetät hahmosi! Jos haluat      |
+  |    varmasti lopettaa pelin, kirjoita "{color.RED}exit{color.END}" ja paina Enter      |
+  |    vahvistaaksesi päätöksesi.                                   |
+  |                                                |{color.RED} x. Takaisin {color.END}|  |
+  |_________________________________________________________________|""")
+  gameInput = input(f"       Haluatko varmasti lopettaa pelin? ")
+  return(gameInput)
 
 def gameEnd_Fail_0Health():
   print(f"""  |    Ded amen :(                                                  |
@@ -690,7 +800,7 @@ def mainGameplay(charHat, charHead, charLeftHand, charLeftArm, charTorso, charRi
         charHunger += 50
         charMoney -= 17.50
         charEnergy -= 2
-      elif gameInput == "x" or gameInput == "X": # Takaisin edelliseen näkymään
+      elif gameInput.upper() == "X": # Takaisin edelliseen näkymään
         print("\033c", end="") # Tyhjentää terminaalin näkymän.    
         continue # Palaa silmukan alkuun
       print("\033c", end="") # Tyhjentää terminaalin näkymän.    
@@ -698,7 +808,7 @@ def mainGameplay(charHat, charHead, charLeftHand, charLeftArm, charTorso, charRi
 
     elif gameInput == "2":
       gameInput = gameInteractMenu_2() # (Toiminnot > Nuku) valikko
-      if gameInput == "x" or gameInput == "X": # Takaisin edelliseen näkymään
+      if gameInput.upper() == "X": # Takaisin edelliseen näkymään
         print("\033c", end="") # Tyhjentää terminaalin näkymän.    
         continue # Palaa silmukan alkuun
       print("\033c", end="") # Tyhjentää terminaalin näkymän.    
@@ -709,6 +819,39 @@ def mainGameplay(charHat, charHead, charLeftHand, charLeftArm, charTorso, charRi
         if gameHours == 24: # Tarkistaa onko kello 24
           gameHours = 0 # Palauttaa kellon arvon takaisin nollaan
           gameDays += 1 # 24 h = 1 day
+
+    elif gameInput == "3":
+      gameInput = gameInteractMenu_3() # (Toiminnot > Ympäristö) valikko
+      if gameInput.upper() == "X": # Takaisin edelliseen näkymään
+        print("\033c", end="") # Tyhjentää terminaalin näkymän.    
+        continue # Palaa silmukan alkuun
+
+    elif gameInput == "4":
+      gameInput = gameInteractMenu_4() # (Toiminnot > Opiskele) valikko
+      if gameInput.upper() == "X": # Takaisin edelliseen näkymään
+        print("\033c", end="") # Tyhjentää terminaalin näkymän.    
+        continue # Palaa silmukan alkuun
+
+    elif gameInput == "5":
+      gameInput = gameInteractMenu_5() # (Toiminnot > Työskentele) valikko
+      if gameInput.upper() == "X": # Takaisin edelliseen näkymään
+        print("\033c", end="") # Tyhjentää terminaalin näkymän.    
+        continue # Palaa silmukan alkuun
+
+    elif gameInput == "6":
+      gameInput = gameInteractMenu_6() # (Toiminnot > Finanssit) valikko
+      if gameInput.upper() == "X": # Takaisin edelliseen näkymään
+        print("\033c", end="") # Tyhjentää terminaalin näkymän.    
+        continue # Palaa silmukan alkuun
+
+    elif gameInput.upper() == "X":
+      gameInput = gameInteractMenu_X() # (Toiminnot > Lopeta peli) valikko
+      if gameInput.upper() == "X": # Takaisin edelliseen näkymään
+        print("\033c", end="") # Tyhjentää terminaalin näkymän.    
+        continue # Palaa silmukan alkuun
+      elif gameInput.upper() == "EXIT":
+        print("\033c", end="") # Tyhjentää terminaalin näkymän.    
+        break
 
     else:
       print("\033c", end="") # Tyhjentää terminaalin näkymän.
