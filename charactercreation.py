@@ -3,7 +3,7 @@ from os import system, name
 from time import sleep
 
 def clear():
-
+ #määrittää clearfunktion toiminaallisuuden
 	if name == 'nt':
 		_ = system('cls')
 
@@ -71,8 +71,8 @@ def teksti3():
   print(f"(_                 ` . ´                    _)")
 
 def valitsehattu():
-    global charHat
-    while True:
+    global charHat 
+    while True: #printataan vaihtoehdot
         valintahattu = input(f"""Valitse hatun numero. (1-16)
         ______    ______    ______    _______  ______    ______   ______    ______
        |1.    |  |2.    |  |3.    |  |4.    | |5.    |  |6.    | |7.    |  |8.    | 
@@ -134,9 +134,11 @@ def valitsehattu():
       
       Oletko varma? (Y/N): """)
                     
-      
+  
                     if vahvistus.upper() == "Y":
+                        clear()
                         return charHat  # Palautetaan ohjelman suoritus takaisin pääohjelmaan
+
                     elif vahvistus.upper() == "N":
                         break  # Palataan takaisin kysymään syötettä 1-16
                     else:
@@ -148,7 +150,8 @@ def valitsehattu():
             print("Syötä numero väliltä 1-16!")
             input("Paina Enter jatkaaksesi...")     
 
-def readycheck():
+def readycheck(): #kun käyttäjä valitsee hahmovalikosta vaihtoehdon 4, readycheck tarkistaa onko hahmolla nimeä, jos ei niin readycheckin suorittaminen päättyy 
+  #palataan takaisin hahmovalikkoon.
   while True:
     if charName != "":
       print(f"""
@@ -162,27 +165,27 @@ def readycheck():
       readycheck1 = input("Oletko tyytyväinen muokkaukseen? Y/N ? ")
       if readycheck1.upper() == "Y":
         clear()
-        print(f"""                  _                   .                     _
-                 (__________________´   `____________________)
-                 .                                           .
-                 .           Customisointi valmis!           . 
-                 .                                           .
-                  _________________       ___________________
-                 (_                 ` . ´                    _)
+        print(f""" _                   .                     _
+(__________________´   `____________________)
+.                                           .
+.           Customisointi valmis!           . 
+.                                           .
+ _________________       ___________________
+(_                 ` . ´                   _)
               """)
         sleep(3)
         clear()
-        print(f"""                  _                   .                     _
-                 (__________________´   `____________________)
-                 .                                           .
-                 .               Olet valmis                 . 
-                 .            aloittamaan matkasi!           .
-                  _________________       ___________________
-                 (_                 ` . ´                    _)
-              """)
+        print(f""" _                   .                     _
+(__________________´   `____________________)
+.                                           .
+.               Olet valmis                 . 
+.            aloittamaan matkasi!           .
+._________________       ___________________.
+(_                 ` . ´                   _)
+              """) 
         sleep(3)
         clear()
-        break
+        break #readycheck poistaa meidät hahmo-menusta ja jatkaa koodin suorittamista
       elif readycheck1.upper() == "N":
           hahmomenu()
       else:
@@ -196,7 +199,7 @@ def readycheck():
 
 
 def hahmomenu():
-  while True:
+  while True: #menu pysyy näkyvillä niin kauan kunnes käyttäjä valitsee toiminnan joka vie funktiosuoritukseen
     print(f"""
                 
                     {charHat}                                                    
@@ -235,7 +238,9 @@ def hahmomenu():
     elif valinta == "3":
       print("\033[93mUPCOMING DLC!!!!!!1 :OO \033[0m")
       input("Paina Enter")
+      
       #tähän ei riittänyt aika
+
     elif valinta == "4":
         readycheck()
         break
@@ -257,6 +262,7 @@ def valitsenimi():
             while True:
                 vahvistus = input("Oletko varma? (Y/N): ")
                 if vahvistus.upper() == "Y":
+                    clear()
                     return  # Palautetaan ohjelman suoritus takaisin pääohjelmaan
                 elif vahvistus.upper() == "N":
                     break  # Palataan takaisin kysymään uutta syötettä
@@ -267,8 +273,6 @@ def valitsenimi():
             print("Syötä merkkijono, jonka pituus on 1-33 merkkiä!")
             input("Paina Enter jatkaaksesi...")
 
-def customisointivalmis():
-    print("Olet valmis aloittamaan matkasi!")
 
 teksti1()
 sleep(3)
@@ -293,17 +297,37 @@ print(f"""
 
 sleep(3)
 clear()
-print("Aika surullisen näköinen kaveri.") 
+print(f" _                   .                     _") 
+print(f"(__________________´   `____________________)")
+print(f".                                           .")
+print(f".             Aika surullisen               .")
+print(f".             näköinen kaveri.              .")
+print(f".                                           .")
+print(f" _________________       ___________________")
+print(f"(_                 ` . ´                    _)")
 sleep(3)
 clear()
 
-print("Nimi, hattu ja värit voisivat tehdä hänelle hyvää.") 
+#sleep(3) ja clear toistot rytmittävät animaatiota
+
+print(f" _                   .                     _") 
+print(f"(__________________´   `____________________)")
+print(f".                                           .")
+print(f".        Nimi, hattu ja värit voisivat      .")
+print(f".           tehdä hänelle hyvää.            .")
+print(f".                                           .")
+print(f" _________________       ___________________")
+print(f"(_                 ` . ´                    _)")
+
 sleep(3)
 clear()
 
 hahmomenu()
+#readycheck palauttaa tänne
 
 print("Oma osuus päättyy! Jeee hyvä sinä!\n")
+
+#liitä tähän kohtaan gameplay.py
       
       
 
