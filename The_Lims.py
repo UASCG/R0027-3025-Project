@@ -52,14 +52,14 @@ def nayta_logo():
     for offset in range(1, 25):
         print("\033c", end="")  
         print(" " * offset + logo)
-        time.sleep(0.1)
+        # DEBUG time.sleep(0.1)
 
     for _ in range(3):
         print("\033c", end="")  
         print(logo)
-        time.sleep(0.5)
+        # DEBUG time.sleep(0.5)
         print("\033c", end="")
-        time.sleep(0.5)
+        # DEBUG time.sleep(0.5)
 
 # päävalikko
 def nayta_main_menu():
