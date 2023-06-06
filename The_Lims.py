@@ -154,7 +154,7 @@ def clear():
 clear()                           
 
 charName= ""
-charHat = ""
+charHat = " "
 charHead = "o"
 charLeftHand = "."
 charLeftArm = "-"
@@ -814,7 +814,8 @@ def gameEnd_Fail_0Health():
   |_________________________________________________________________|""")
   time.sleep(3)
   print("\033c", end="") # Tyhjentää terminaalin näkymän.    
-  print(f"""  |                                                                 |
+  print(f"""   _________________________________________________________________
+  |                                                                 |
   |                           .---.                                 |
   |                           |   |                                 |           
   |                        ___|   |___                              | 
@@ -832,10 +833,18 @@ def gameEnd_Fail_0Health():
   input("                 Paina Enter palataksesi päävalikkoon.")
   print("\033c", end="") # Tyhjentää terminaalin näkymän.  
 
-def gameEnd_Win_210OP():
-  print(f"""  |   Kiitos kun pelasit trial/freeware versiota.                     |
-  |   Osta täysi peli                                               |
-  |   jatkaaksesi elämää koulun jälkeen                             |
+def gameEnd_Win_210OP(charName):
+  print(f"""   _________________________________________________________________
+  |   Onneksi olkoon!                                               |
+  |   {charName} valmistui!{"|" : >{52 - len(charName)}}
+  |                                                                 |
+  |                                                                 |
+  |_________________________________________________________________|""")
+  input("                 Paina Enter.")
+  print(f"""   _________________________________________________________________
+  |   Kiitos kun pelasit trial/freeware versiota!                   |
+  |   Osta täysi peli jatkaaksesi elämää koulun jälkeen.            |
+  |                                                                 |
   |                                                                 |
   |_________________________________________________________________|""")
   input("                 Paina Enter palataksesi päävalikkoon.")
@@ -904,7 +913,7 @@ def mainGameplay(charHat, charHead, charLeftHand, charLeftArm, charTorso, charRi
       gameEnd_Fail_0Health() # Tulostetaan game over
       break # Lopettaa pelin
     elif charOP >= 210: # Tarkistaa onko hahmo saanut tarvittavan määrän opintopisteitä
-      gameEnd_Win_210OP() # Tulostetaan voittonäkymä
+      gameEnd_Win_210OP(charName) # Tulostetaan voittonäkymä
       break # Lopettaa pelin
     else:
       gameInput = (gameInteractMenu(charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100, charHealth, tutorialMessageCheck))
@@ -980,7 +989,7 @@ def mainGameplay(charHat, charHead, charLeftHand, charLeftArm, charTorso, charRi
           gameHours += 1
           gameHoursCounter += 1
           charHunger -= 5
-          charOP += 1
+          charOP += 3
           charEnergy -= 12
           charHunger, charEnergy, charHealth, charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100 = charStatCheck(charHunger, charEnergy, charHealth, charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100)
           if gameHours == 24: # Tarkistaa onko kello 24
@@ -1001,7 +1010,7 @@ def mainGameplay(charHat, charHead, charLeftHand, charLeftArm, charTorso, charRi
           gameHours += 1
           gameHoursCounter += 1
           charHunger -= 5
-          charOP += 1
+          charOP += 2
           charEnergy -= 10
           charHunger, charEnergy, charHealth, charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100 = charStatCheck(charHunger, charEnergy, charHealth, charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100)
           if gameHours == 24: # Tarkistaa onko kello 24
