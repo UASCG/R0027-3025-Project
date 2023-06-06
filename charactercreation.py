@@ -238,6 +238,7 @@ def hahmomenu():
     elif valinta == "3":
       print("\033[93mUPCOMING DLC!!!!!!1 :OO \033[0m")
       input("Paina Enter")
+      clear()
       
       #tähän ei riittänyt aika
 
