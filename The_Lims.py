@@ -1,8 +1,3 @@
-"""
-Muista!
- 1. Poista DEBUG osiot
-"""
-
 # Koodi yhdistetään tähän tiedostoon.
 
 # logo ja välkkyvä epilepsia-intro
@@ -52,14 +47,14 @@ def nayta_logo():
     for offset in range(1, 25):
         print("\033c", end="")  
         print(" " * offset + logo)
-        # DEBUG time.sleep(0.1)
+        time.sleep(0.1)
 
     for _ in range(3):
         print("\033c", end="")  
         print(logo)
-        # DEBUG time.sleep(0.5)
+        time.sleep(0.5)
         print("\033c", end="")
-        # DEBUG time.sleep(0.5)
+        time.sleep(0.5)
 
 # päävalikko
 def nayta_main_menu():
@@ -301,7 +296,7 @@ def readycheck(): #kun käyttäjä valitsee hahmovalikosta vaihtoehdon 4, readyc
  _________________       ___________________
 (_                 ` . ´                   _)
               """)
-        # sleep(3) DEBUG
+        sleep(3)
         clear()
         print(f""" _                   .                     _
 (__________________´   `____________________)
@@ -311,7 +306,7 @@ def readycheck(): #kun käyttäjä valitsee hahmovalikosta vaihtoehdon 4, readyc
 ._________________       ___________________.
 (_                 ` . ´                   _)
               """) 
-        # sleep(3) DEBUG
+        sleep(3)
         clear()
         break #readycheck poistaa meidät hahmo-menusta ja jatkaa koodin suorittamista
       elif readycheck1.upper() == "N":
@@ -399,15 +394,15 @@ def valitsenimi():
 
 def mainCharacterCreator():
     teksti1()
-    # sleep(3) DEBUG
+    sleep(3)
     clear()
 
     teksti2()
-    # sleep(3) DEBUG
+    sleep(3)
     clear()
 
     teksti3()
-    # sleep(3) DEBUG
+    sleep(3)
     clear()
 
     print("Tässä olet sinä.")
@@ -419,7 +414,7 @@ def mainCharacterCreator():
 
 
 
-    # sleep(3) DEBUG
+    sleep(3)
     clear()
     print(f" _                   .                     _") 
     print(f"(__________________´   `____________________)")
@@ -429,7 +424,7 @@ def mainCharacterCreator():
     print(f".                                           .")
     print(f" _________________       ___________________")
     print(f"(_                 ` . ´                    _)")
-    # sleep(3) DEBUG
+    sleep(3)
     clear()
 
     #sleep(3) ja clear toistot rytmittävät animaatiota
@@ -443,7 +438,7 @@ def mainCharacterCreator():
     print(f" _________________       ___________________")
     print(f"(_                 ` . ´                    _)")
 
-    # sleep(3) DEBUG
+    sleep(3)
     clear()
 
     hahmomenu()
@@ -504,10 +499,28 @@ def charStatCheck_Message(charHungerMessage_100, charHungerMessage_0, charEnergy
 
 def gameRoomAndStats(gameHours, gameDays, charHealth, charEnergy, charHunger, charMoney, charOP, charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100):
   print(f"   _________________________________________________________________") # Tulostaa hahmon ja ympäristön
-  print(f"""  |                                                   |             |
+  if gameHours >= 9 and gameHours <= 21:
+    print(f"""  |                                                   |             |
   |                                 ____________      |             |
   |                                ||    ||  `O||     |             |
   |                                ||    ||  ´ ||     |             |
+  |                                ||____||____||     |             |
+  |                                                ___()            |
+  |                                ()_____________(\__\\\()          |
+  |                                ||\() \_\ \_\ \_(___)||          |
+  |________________________________||\|| |_| |_| |_|____||          |
+  |                                   || |_| |_| |_|    ||          |
+  |                                                       `.        |
+  |          {charHat}                                              `.      |
+  |          {charHead}                                                `.    |
+  |        {charLeftHand}{charLeftArm}{charTorso}{charRightArm}{charRightHand}                                                `.  |
+  |         {charLeftLeg} {charRightLeg}                                                   `.|
+  |_________________________________________________________________|""")
+  else:
+        print(f"""  |                                                   |             |
+  |                                 ____________      |             |
+  |                                ||    ||   ☽||     |             |
+  |                                ||    ||    ||     |             |
   |                                ||____||____||     |             |
   |                                                ___()            |
   |                                ()_____________(\__\\\()          |
@@ -799,6 +812,25 @@ def gameEnd_Fail_0Health():
   |                                                                 |
   |                                                                 |
   |_________________________________________________________________|""")
+  time.sleep(3)
+  print("\033c", end="") # Tyhjentää terminaalin näkymän.    
+  print(f"""  |                                                                 |
+  |                            .---.                                |
+  |                            |   |                                |           
+  |                         ___|   |___                             | 
+  |                        [           ]                            |
+  |                        ---.   .---'                            |
+  |                            |   |                                |
+  |                            |   |                                | 
+  |                            |   |                                |
+  |                         .-|   |-,                             |
+  |                     .-"   "'   "-.                         |
+  |                   .'                   '.                       |
+  |                                                                 |
+  |                                                                 |
+  |_________________________________________________________________|""")
+  input("                 Paina Enter palataksesi päävalikkoon.")
+  print("\033c", end="") # Tyhjentää terminaalin näkymän.  
 
 def gameEnd_Win_210OP():
   print(f"""  |    Hahmo valmistuu!!!1                                          |
@@ -806,6 +838,8 @@ def gameEnd_Win_210OP():
   |                                                                 |
   |                                                                 |
   |_________________________________________________________________|""")
+  input("                 Paina Enter palataksesi päävalikkoon.")
+  print("\033c", end="") # Tyhjentää terminaalin näkymän.  
 
 # v Aloitusarvot v
 
