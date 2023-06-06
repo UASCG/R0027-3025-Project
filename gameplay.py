@@ -492,13 +492,75 @@ def mainGameplay(charHat, charHead, charLeftHand, charLeftArm, charTorso, charRi
       if gameInput.upper() == "X": # Takaisin edelliseen näkymään
         print("\033c", end="") # Tyhjentää terminaalin näkymän.
         continue # Palaa silmukan alkuun
-      if gameInput == "1":
+
+      if gameInput == "1": # Mene oppitunnille
         gameInput_Chosen = gameInput
         gameInput_Chosen = gameInput_Chosen_Messages(gameInput_Chosen)
         gameInput = gameInteractMenu_SelectTime(gameInput_Chosen) # (Toiminnot > Opiskele > Ajastin) valikko
-        charHunger -= 5
-        charOP += 1
-        charEnergy -= 12
+        if gameInput.upper() == "X": # Takaisin edelliseen näkymään
+          print("\033c", end="") # Tyhjentää terminaalin näkymän.    
+          continue # Palaa silmukan alkuun
+        print("\033c", end="") # Tyhjentää terminaalin näkymän.    
+        while gameHoursCounter < int(gameInput):
+          gameHours += 1
+          gameHoursCounter += 1
+          charHunger -= 5
+          charOP += 1
+          charEnergy -= 12
+          charHunger, charEnergy, charHealth, charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100 = charStatCheck(charHunger, charEnergy, charHealth, charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100)
+          if gameHours == 24: # Tarkistaa onko kello 24
+            gameHours = 0 # Palauttaa kellon arvon takaisin nollaan
+            gameDays += 1 # 24 h = 1 day
+          gameRoomAndStats(gameHours, gameDays, charHealth, charEnergy, charHunger, charMoney, charOP, charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100)
+          gamePseudoMenu(charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100, charHealth)
+          print("\033c", end="") # Tyhjentää terminaalin näkymän.
+          time.sleep(0.3)
+
+      if gameInput == "2": # Osallistu etätunnille
+        gameInput_Chosen = gameInput
+        gameInput_Chosen = gameInput_Chosen_Messages(gameInput_Chosen)
+        gameInput = gameInteractMenu_SelectTime(gameInput_Chosen) # (Toiminnot > Opiskele > Ajastin) valikko
+        if gameInput.upper() == "X": # Takaisin edelliseen näkymään
+          print("\033c", end="") # Tyhjentää terminaalin näkymän.    
+          continue # Palaa silmukan alkuun
+        print("\033c", end="") # Tyhjentää terminaalin näkymän.    
+        while gameHoursCounter < int(gameInput):
+          gameHours += 1
+          gameHoursCounter += 1
+          charHunger -= 5
+          charOP += 1
+          charEnergy -= 10
+          charHunger, charEnergy, charHealth, charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100 = charStatCheck(charHunger, charEnergy, charHealth, charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100)
+          if gameHours == 24: # Tarkistaa onko kello 24
+            gameHours = 0 # Palauttaa kellon arvon takaisin nollaan
+            gameDays += 1 # 24 h = 1 day
+          gameRoomAndStats(gameHours, gameDays, charHealth, charEnergy, charHunger, charMoney, charOP, charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100)
+          gamePseudoMenu(charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100, charHealth)
+          print("\033c", end="") # Tyhjentää terminaalin näkymän.
+          time.sleep(0.3)
+
+      if gameInput == "3": # Opiskele itsenäisesti
+        gameInput_Chosen = gameInput
+        gameInput_Chosen = gameInput_Chosen_Messages(gameInput_Chosen)
+        gameInput = gameInteractMenu_SelectTime(gameInput_Chosen) # (Toiminnot > Opiskele > Ajastin) valikko
+        if gameInput.upper() == "X": # Takaisin edelliseen näkymään
+          print("\033c", end="") # Tyhjentää terminaalin näkymän.    
+          continue # Palaa silmukan alkuun
+        print("\033c", end="") # Tyhjentää terminaalin näkymän.    
+        while gameHoursCounter < int(gameInput):
+          gameHours += 1
+          gameHoursCounter += 1
+          charHunger -= 5
+          charOP += 1
+          charEnergy -= 10
+          charHunger, charEnergy, charHealth, charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100 = charStatCheck(charHunger, charEnergy, charHealth, charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100)
+          if gameHours == 24: # Tarkistaa onko kello 24
+            gameHours = 0 # Palauttaa kellon arvon takaisin nollaan
+            gameDays += 1 # 24 h = 1 day
+          gameRoomAndStats(gameHours, gameDays, charHealth, charEnergy, charHunger, charMoney, charOP, charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100)
+          gamePseudoMenu(charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100, charHealth)
+          print("\033c", end="") # Tyhjentää terminaalin näkymän.
+          time.sleep(0.3)
 
     elif gameInput == "5":
       gameInput = gameInteractMenu_5() # (Toiminnot > Työskentele) valikko
