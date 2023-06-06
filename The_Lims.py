@@ -815,16 +815,16 @@ def gameEnd_Fail_0Health():
   time.sleep(3)
   print("\033c", end="") # Tyhjentää terminaalin näkymän.    
   print(f"""  |                                                                 |
-  |                            .---.                                |
-  |                            |   |                                |           
-  |                         ___|   |___                             | 
-  |                        [           ]                            |
-  |                        ---.   .---'                            |
-  |                            |   |                                |
-  |                            |   |                                | 
-  |                            |   |                                |
-  |                         .-|   |-,                             |
-  |                     .-"   "'   "-.                         |
+  |                           .---.                                 |
+  |                           |   |                                 |           
+  |                        ___|   |___                              | 
+  |                       [           ]                             |
+  |                        ---.   .---'                             |
+  |                           |   |                                 |
+  |                           |   |                                 | 
+  |                           |   |                                 |
+  |                        _.-|   |-,_                              |
+  |                     .-"          "'"-.                          |
   |                   .'                   '.                       |
   |                                                                 |
   |                                                                 |
@@ -833,9 +833,9 @@ def gameEnd_Fail_0Health():
   print("\033c", end="") # Tyhjentää terminaalin näkymän.  
 
 def gameEnd_Win_210OP():
-  print(f"""  |    Hahmo valmistuu!!!1                                          |
-  |                                                                 |
-  |                                                                 |
+  print(f"""  |   Kiitos kun pelasit trial/freeware versiota.                     |
+  |   Osta täysi peli                                               |
+  |   jatkaaksesi elämää koulun jälkeen                             |
   |                                                                 |
   |_________________________________________________________________|""")
   input("                 Paina Enter palataksesi päävalikkoon.")
