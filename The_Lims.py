@@ -495,6 +495,7 @@ def charStatCheck_Message(charHungerMessage_100, charHungerMessage_0, charEnergy
     print(f"       {charName} tuntee olevansa maailman tervein ihminen!")
   if charHealth < 10:
     print(f"       {charName} ei voi hyvin...")
+  sleep(3) #tämä lisätty että kerkeää lukea tekstit 
   return()
 
 def gameRoomAndStats(gameHours, gameDays, charHealth, charEnergy, charHunger, charMoney, charOP, charHungerMessage_100, charHungerMessage_0, charEnergyMessage_100, charEnergyMessage_0, charHealthMessage_100):
